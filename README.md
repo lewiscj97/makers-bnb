@@ -4,6 +4,12 @@
 
 ```
 As a User
+So that I can use MakersBnb
+I want to be able to sign up
+```
+
+```
+As a User
 So that someone can rent my space
 I want to list a new space
 ```
