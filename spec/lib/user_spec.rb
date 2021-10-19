@@ -11,4 +11,23 @@ describe User do
       expect(user.password).to eq 'password'
     end
   end
+
+  describe '#sign in' do
+    it 'returns true when credentials match' do
+
+      DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Foo', 'foo@bar.com, 'password');")
+      result = User.sign_in('foo@bar.com', 'password')
+      
+      expect(result).to eq true   
+    end
+
+    it 'returns false when credentials do not match'
+    DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Foo', 'foo@bar.com, 'password');")
+
+    result = User.sign_in('foo@bar.com', 'wrongpassword')
+    
+    expect(result).to eq false
+
+  end
+
 end

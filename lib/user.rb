@@ -7,4 +7,10 @@ class User
   end
 
   attr_reader :id, :username, :email, :password
+
+  def self.sign_in(email, password)
+    
+
+  end
+
 end
