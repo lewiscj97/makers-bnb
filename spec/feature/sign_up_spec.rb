@@ -13,11 +13,8 @@ feature 'Sign up: ' do
   end
 
   scenario 'a user can sign up' do
-    visit('/sign-up')
-    page.fill_in :name, with: 'Brian'
-    page.fill_in :email, with: 'test@email.com'
-    page.fill_in :password, with: 'password123'
-    page.click_button 'Submit'
-    expect(page).to 
+    user_sign_up
+    expect(page).to have_current_path('/sign-up-completed')
+    expect(page).to have_content('You have created an account.')
   end
 end

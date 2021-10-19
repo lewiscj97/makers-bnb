@@ -9,4 +9,12 @@ class MakersBnb < Sinatra::Base
   get '/sign-up' do
     erb (:sign_up)
   end
+
+  post '/sign-up' do
+    redirect ('/sign-up-completed')
+  end
+
+  get '/sign-up-completed' do
+    erb (:sign_up_completed)
+  end
 end
