@@ -17,4 +17,9 @@ class MakersBnb < Sinatra::Base
   get '/sign-up-completed' do
     erb (:sign_up_completed)
   end
+  
+  get '/' do
+    erb :index
+  end
+
 end
