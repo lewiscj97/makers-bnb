@@ -11,4 +11,16 @@ describe User do
       expect(user.password).to eq 'password'
     end
   end
+
+  describe "#create" do
+    it "creates a new user" do
+      user = User.create('Brian', 'test@email.com', 'password123')
+      persisted_data = PG.connect(dbname: 'makersbnb').query("SELECT * FROM users WHERE id = #{user.id};")
+
+      expect(user.id).to eq persisted_data.first['id']
+      expect(user.username).to eq 'Brian'
+      expect(user.email).to eq 'test@email.com'
+      expect(user.password).to eq 'password123'
+    end
+  end
 end
