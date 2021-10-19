@@ -8,7 +8,7 @@ end
 
 def user_sign_up
   visit('/sign-up')
-  page.fill_in :name, with: 'Brian'
+  page.fill_in :username, with: 'Brian'
   page.fill_in :email, with: 'test@email.com'
   page.fill_in :password, with: 'password123'
   page.click_button 'Submit'

@@ -6,9 +6,9 @@ feature 'Sign up: ' do
 
   scenario 'page will have a sign up form' do
     visit('/sign-up')
-    expect(page).to have_content('Enter your name')
-    expect(page).to have_content('Enter your email address')
-    expect(page).to have_content('Create your password')
+    expect(page).to have_content('Create a username')
+    expect(page).to have_content('Enter an email address')
+    expect(page).to have_content('Create a password')
     expect(page).to have_button('Submit')
   end
 

@@ -1,5 +1,6 @@
 require 'sinatra'
 require './lib/database_connection_setup'
+require './lib/user.rb'
 
 class MakersBnb < Sinatra::Base
   get '/test' do
@@ -11,6 +12,8 @@ class MakersBnb < Sinatra::Base
   end
 
   post '/sign-up' do
+    p params
+    User.create(params['username'], params['email'], params['password'])
     redirect ('/sign-up-completed')
   end
 
