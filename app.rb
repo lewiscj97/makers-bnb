@@ -12,7 +12,7 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/add-space' do
-    erb :add
+    erb :add_space
   end
 
   post '/add-space' do

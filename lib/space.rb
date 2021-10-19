@@ -21,7 +21,8 @@ class Space
       [space_name, description, rate]
     )
 
-    Space.new(id: result[0]['id'], space_name: result[0]['name'], description: result[0]['description'],
-              rate: result[0]['rate'], user_id: result[0]['user_id'])
+    space = result.first
+    Space.new(id: space['id'], space_name: space['name'], description: space['description'],
+              rate: space['rate'], user_id: space['user_id'])
   end
 end

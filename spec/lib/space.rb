@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'space'
+require './lib/database_connection'
 
 describe Space do
   describe '#initialize' do
@@ -16,9 +17,10 @@ describe Space do
 
   describe '#add_space' do
     it 'should take in a space name, description and rate' do
-      space = Space.add(name: 'Foo', description: 'A lovely home', rate: 50)
+      Space.add(space_name: 'Foo', description: 'A lovely home', rate: 50)
+      space = DatabaseConnection.query('SELECT * FROM spaces')
 
-      expect(space.name).to eq 'Foo'
+      expect(space.space_name).to eq 'Foo'
       expect(space.description).to eq 'A lovely home'
       expect(space.rate).to eq 50
     end
