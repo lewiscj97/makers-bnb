@@ -10,11 +10,11 @@ class MakersBnb < Sinatra::Base
     erb :index
   end
 
-  post '/sign_in' do
+  post '/sign-in' do
     erb :sign_in
   end
 
-  post '/sign_in_input' do
+  post '/sign-in-input' do
     User.sign_in
     redirect '/'
   end
