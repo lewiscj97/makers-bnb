@@ -8,6 +8,20 @@ class MakersBnb < Sinatra::Base
     'Hello, world!'
   end
 
+  get '/sign-up' do
+    erb (:sign_up)
+  end
+
+  post '/sign-up' do
+    p params
+    User.create(params['username'], params['email'], params['password'])
+    redirect ('/sign-up-completed')
+  end
+
+  get '/sign-up-completed' do
+    erb (:sign_up_completed)
+  end
+
   get '/' do
     erb :index
   end

@@ -31,9 +31,9 @@
 
 ### users
 
-| id                 | name    | email       | password |
-|--------------------|---------|-------------|----------|
-| SERIAL PRIMARY KEY | VARCHAR | VARCHAR     | VARCHAR  |
-| 23                  | Bar     | bar@foo.com | password |
+| id                 | username    | email       | password |
+|--------------------|-------------|-------------|----------|
+| SERIAL PRIMARY KEY | VARCHAR     | VARCHAR     | VARCHAR  |
+| 23                 | Bar         | bar@foo.com | password |
 
 Users and spaces have a one-to-many relationship.
