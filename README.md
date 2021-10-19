@@ -15,6 +15,12 @@ I want to list a new space
 ```
 
 ```
+As a user
+So that i can see all my listings
+I want to view my listings
+```
+
+```
 As a User
 So that customers have a choice of spaces
 I want to list multiple spaces
