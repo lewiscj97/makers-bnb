@@ -15,7 +15,6 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/sign-up-completed' do
-    hello
     erb (:sign_up_completed)
   end
   
