@@ -15,8 +15,12 @@ class MakersBnb < Sinatra::Base
     erb :add_space
   end
 
+  get '/add-space-confirmation' do
+    erb :add_space_confirmation
+  end
+
   post '/add-space' do
     Space.add(space_name: params[:space_name], description: params[:description], rate: params[:rate])
-    redirect '/add-space'
+    redirect '/add-space-confirmation'
   end
 end
