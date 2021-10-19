@@ -24,7 +24,7 @@
 ## Table models
 ### spaces
 
-| id                 | name    | description   | rate | user_id |
+| id                 | space_name    | description   | rate | user_id |
 |--------------------|---------|---------------|------|---------|
 | SERIAL PRIMARY KEY | VARCHAR | VARCHAR       | INT  | INT     |
 | 5                  | Foo     | A lovely home | 50   | 23      |

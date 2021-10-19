@@ -1,0 +1,8 @@
+<h1 xmlns="http://www.w3.org/1999/html">Makers BnB</h1>
+<h2>Add a Space</h2>
+<form method="post" action="/add-space">
+  <%= "Space Name: " %><input type="text" name="space_name" placeholder="Space Name"/><br><br>
+  <%= "Description: " %><textarea name="description" placeholder="Description" maxlength="500"></textarea><br><br>
+  <%= "Nightly Rate: " %><input type="text" name="rate" placeholder="Nightly Rate"/><br><br>
+  <input type="submit" value="Add Space"/>
+</form>
