@@ -16,7 +16,7 @@ I want to list a new space
 
 ```
 As a user
-So that i can see all my listings
+So that I can see all of my listings
 I want to view my listings
 ```
 
