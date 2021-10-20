@@ -10,8 +10,12 @@ class User
   end
 
   def self.sign_in(email, password)
-    result = DatabaseConnection.query("SELECT password FROM users WHERE email LIKE $1", [email])
-    result_password = result.first['password']
+    response = DatabaseConnection.query("SELECT password FROM users WHERE email LIKE $1", [email])
+    result = response.first
+    
+    return false if result.nil?
+
+    result_password = result['password']
     result_password == password
   end
 

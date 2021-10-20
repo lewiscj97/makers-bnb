@@ -27,6 +27,10 @@ describe User do
       expect(result).to eq false
     end
 
+    it 'returns false when the email is not in the database' do
+      result = User.sign_in('foo@bar.com', 'wrongpassword')
+      expect(result).to eq false
+    end
   end
 
   describe "#create" do

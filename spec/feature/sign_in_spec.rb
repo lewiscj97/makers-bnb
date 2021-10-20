@@ -20,4 +20,13 @@ feature 'Sign in to your user account:' do
 
     expect(page).to have_current_path('/sign-in')
   end
+
+  scenario 'User email not in database' do
+    visit('/sign-in')
+    fill_in 'email', with: 'foo@bar.com'
+    fill_in 'password', with: 'password'
+    click_button 'Log in'
+
+    expect(page).to have_current_path('/sign-in')
+  end
 end
