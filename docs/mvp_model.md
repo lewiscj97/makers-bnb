@@ -24,16 +24,16 @@
 ## Table models
 ### spaces
 
-| id                 | name    | description   | rate | user_id |
+| id                 | space_name    | description   | rate | user_id |
 |--------------------|---------|---------------|------|---------|
 | SERIAL PRIMARY KEY | VARCHAR | VARCHAR       | INT  | INT     |
 | 5                  | Foo     | A lovely home | 50   | 23      |
 
 ### users
 
-| id                 | name    | email       | password |
-|--------------------|---------|-------------|----------|
-| SERIAL PRIMARY KEY | VARCHAR | VARCHAR     | VARCHAR  |
-| 23                  | Bar     | bar@foo.com | password |
+| id                 | username    | email       | password |
+|--------------------|-------------|-------------|----------|
+| SERIAL PRIMARY KEY | VARCHAR     | VARCHAR     | VARCHAR  |
+| 23                 | Bar         | bar@foo.com | password |
 
 Users and spaces have a one-to-many relationship.
