@@ -29,4 +29,11 @@ feature 'Sign in to your user account:' do
 
     expect(page).to have_current_path('/sign-in')
   end
+
+  scenario 'User is taken to sign up page when clicking the sign-up button' do
+    visit('/sign-in')
+    click_button 'Sign up'
+
+    expect(page).to have_current_path('/sign-up')
+  end
 end
