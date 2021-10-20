@@ -25,10 +25,6 @@ class MakersBnb < Sinatra::Base
     redirect '/'
   end
 
-  get '/sign-up-completed' do
-    erb(:sign_up_completed)
-  end
-
   get '/add-space' do
     erb(:add_space)
   end
@@ -51,6 +47,7 @@ class MakersBnb < Sinatra::Base
     password = params['password']
     if User.sign_in(email, password) == true
       session[:user_id] = User.get_user_id(email)
+      flash[:sign_in_success] = 'You have successfully logged in!'
       redirect '/'
     else
       flash[:incorrect_details] = 'Incorrect login details entered'
