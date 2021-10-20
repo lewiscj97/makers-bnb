@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require 'user'
 
 describe User do
-  describe "#initialize" do
-    it "can be passed an id, username, email and password" do
+  describe '#initialize' do
+    it 'can be passed an id, username, email and password' do
       user = User.new(1, 'foo', 'foo@bar.com', 'password')
-      
       expect(user.id).to eq 1
       expect(user.username).to eq 'foo'
       expect(user.email).to eq 'foo@bar.com'
@@ -16,14 +17,12 @@ describe User do
     it 'returns true when credentials match' do
       DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Foo', 'foo@bar.com', 'password');")
       result = User.sign_in('foo@bar.com', 'password')
-      
-      expect(result).to eq true   
+      expect(result).to eq true
     end
 
     it 'returns false when credentials do not match' do
       DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Foo', 'foo@bar.com', 'password');")
       result = User.sign_in('foo@bar.com', 'wrongpassword')
-    
       expect(result).to eq false
     end
 
@@ -33,10 +32,10 @@ describe User do
     end
   end
 
-  describe "#create" do
-    it "creates a new user" do
+  describe '#create' do
+    it 'creates a new user' do
       user = User.create('Brian', 'test@email.com', 'password123')
-      persisted_data = DatabaseConnection.query("SELECT * FROM users WHERE id = $1;", [user.id])
+      persisted_data = DatabaseConnection.query('SELECT * FROM users WHERE id = $1;', [user.id])
 
       expect(user.id).to eq persisted_data.first['id']
       expect(user.username).to eq 'Brian'
