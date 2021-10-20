@@ -11,7 +11,6 @@ class MakersBnb < Sinatra::Base
   register Sinatra::Flash
 
   get '/' do
-    p session[:user_id]
     erb(:index)
   end
 
@@ -26,12 +25,10 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/sign-up-completed' do
-    p session[:user_id]
     erb(:sign_up_completed)
   end
 
   get '/add-space' do
-    p session[:user_id]
     erb(:add_space)
   end
 
@@ -41,7 +38,6 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/add-space-confirmation' do
-    p session[:user_id]
     erb(:add_space_confirmation)
   end
 
@@ -62,7 +58,6 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/spaces' do
-    p session[:user_id]
     @spaces = Space.all
     erb(:spaces)
   end
