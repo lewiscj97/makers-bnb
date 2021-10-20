@@ -26,4 +26,14 @@ class User
     )
     User.new(result[0]['id'], result[0]['username'], result[0]['email'], result[0]['password'])
   end
+
+  def self.find(id)
+    result = DatabaseConnection.query('SELECT * FROM users WHERE id = $1', [id])
+    User.new(result[0]['id'], result[0]['username'], result[0]['email'], 'protected')
+  end
+
+  def self.get_user_id(email)
+    response = DatabaseConnection.query('SELECT id FROM users WHERE email LIKE $1', [email])
+    response.first['id']
+  end
 end
