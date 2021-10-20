@@ -1,0 +1,9 @@
+<ul>
+  <% @space.each do |space_details| %>
+    <a href="<%= space_details.url %>" target="_blank">
+      <%= space_details.space_name %>
+      <%= space_details.description %>
+      <%= space_details.rate %>
+    </a>
+  <% end %>
+</ul>
