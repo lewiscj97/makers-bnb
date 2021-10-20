@@ -25,4 +25,13 @@ describe Space do
       expect(space['rate']).to eq "50"
     end
   end
+
+  describe '#all' do
+    it 'returns one spaces from database' do
+      add_a_space
+      spaces = Space.all
+
+      expect(spaces[0].space_name).to eq 'foo'
+    end
+  end
 end
