@@ -50,15 +50,14 @@ describe Space do
 
   describe '#find' do
     it 'should return a specific space based on a space.id' do
-      space = Space.add(space_name: 'Foo', description: 'A lovely home', rate: 50)
-      found_space = Space.find(id: space.id)
+      Space.add(space_name: 'Foo', description: 'A lovely home', rate: 50)
+      data = PG.connect(dbname: 'makersbnb_test').query("SELECT * FROM spaces;")
 
-      data = DatabaseConnection.query('SELECT * FROM spaces;')
-      data = data.first
-
-      expect(data['id']).to eq found_space.id
-      expect(data['space_name']).to eq found_space.space_name
-
+      space_id = data.first['id']
+      
+      space = Space.find(space_id)
+      expect(space.id).to eq space_id
+      expect(space.space_name).to eq 'Foo'
     end
   end
 end

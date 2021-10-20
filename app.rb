@@ -28,7 +28,8 @@ class MakersBnb < Sinatra::Base
     erb(:sign_up_completed)
   end
 
-  get 'spaces/:id' do
+  get '/spaces/:id' do
+    @space = Space.find(params[:id])
     erb(:view_specific_space)
   end
 
@@ -42,7 +43,6 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/add-space-confirmation' do
-    @spaces = DatabaseConnection.query('SELECT * FROM spaces WHERE id = $1;', [params[:id]])
     erb(:add_space_confirmation)
   end
 
