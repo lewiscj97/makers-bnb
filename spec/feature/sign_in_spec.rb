@@ -36,4 +36,15 @@ feature 'Sign in to your user account:' do
 
     expect(page).to have_current_path('/sign-up')
   end
+
+  scenario 'error message shown when user signs in unsuccessfully' do
+    DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Foo', 'foo@bar.com', 'password');")
+
+    visit('/sign-in')
+    fill_in 'email', with: 'foo@bar.com'
+    fill_in 'password', with: 'incorrectpassword'
+    click_button 'Log in'
+
+    expect(page).to have_content('Incorrect login details entered')
+  end
 end
