@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require 'space'
+require 'space_spec'
 require './lib/database_connection'
 
 describe Space do
