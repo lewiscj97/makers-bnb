@@ -33,7 +33,7 @@ class MakersBnb < Sinatra::Base
   end
 
   post '/add-space' do
-    Space.add(space_name: params[:space_name], description: params[:description], rate: params[:rate])
+    Space.add(space_name: params[:space_name], description: params[:description], rate: params[:rate], user_id: session[:user_id])
     redirect('/add-space-confirmation')
   end
 
