@@ -27,11 +27,22 @@ describe Space do
   end
 
   describe '#all' do
-    it 'returns one spaces from database' do
-      add_a_space
+    it 'returns one space from database' do
+      Space.add(space_name: 'Foo', description: 'A lovely home', rate: 50)
       spaces = Space.all
+      expect(spaces[0].space_name).to eq 'Foo'
+      expect(spaces[0].description).to eq 'A lovely home'
+      expect(spaces[0].rate).to eq "50"
+    end
 
-      expect(spaces[0].space_name).to eq 'foo'
+    it 'returns multiple spaces from database' do
+      Space.add(space_name: 'Foo', description: 'A lovely home', rate: 50)
+      Space.add(space_name: 'Bar', description: 'A lovely home', rate: 50)
+      Space.add(space_name: 'Test', description: 'A lovely home', rate: 50)
+      spaces = Space.all
+      expect(spaces[0].space_name).to eq 'Foo'
+      expect(spaces[1].space_name).to eq 'Bar'
+      expect(spaces[2].space_name).to eq 'Test'
     end
   end
 end

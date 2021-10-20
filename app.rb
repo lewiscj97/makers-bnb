@@ -36,4 +36,9 @@ class MakersBnb < Sinatra::Base
     erb(:add_space_confirmation)
   end
 
+  get '/spaces' do
+    @spaces = Space.all
+    erb(:spaces)
+  end
+
 end
