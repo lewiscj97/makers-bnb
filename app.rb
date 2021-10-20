@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
 require 'sinatra'
+require 'sinatra/flash'
 require './lib/database_connection_setup'
 require './lib/user'
 require './lib/space'
 
 class MakersBnb < Sinatra::Base
+  enable :sessions
+  register Sinatra::Flash
+
   get '/' do
     erb(:index)
   end
@@ -36,9 +40,23 @@ class MakersBnb < Sinatra::Base
     erb(:add_space_confirmation)
   end
 
+  get '/sign-in' do
+    erb :sign_in
+  end
+
+  post '/sign-in-input' do 
+    email = params['email']
+    password = params['password']
+    if User.sign_in(email, password) == true
+      redirect '/'
+    else
+      flash[:incorrect_details] = 'Incorrect login details entered'
+      redirect '/sign-in'
+    end
+  end
+
   get '/spaces' do
     @spaces = Space.all
     erb(:spaces)
   end
-
 end
