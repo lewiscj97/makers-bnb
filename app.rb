@@ -27,7 +27,7 @@ class MakersBnb < Sinatra::Base
     erb(:sign_up_completed)
   end
 
-  get 'space/:id' do
+  get 'spaces/:id' do
     erb(:view_specific_space)
   end
 

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require './lib/database_connection'
 require './lib/space'
 
@@ -23,7 +24,7 @@ describe Space do
 
       expect(space['space_name']).to eq 'Foo'
       expect(space['description']).to eq 'A lovely home'
-      expect(space['rate']).to eq "50"
+      expect(space['rate']).to eq '50'
     end
   end
 
@@ -33,7 +34,7 @@ describe Space do
       spaces = Space.all
       expect(spaces[0].space_name).to eq 'Foo'
       expect(spaces[0].description).to eq 'A lovely home'
-      expect(spaces[0].rate).to eq "50"
+      expect(spaces[0].rate).to eq '50'
     end
 
     it 'returns multiple spaces from database' do
@@ -44,6 +45,20 @@ describe Space do
       expect(spaces[0].space_name).to eq 'Foo'
       expect(spaces[1].space_name).to eq 'Bar'
       expect(spaces[2].space_name).to eq 'Test'
+    end
+  end
+
+  describe '#find' do
+    it 'should return a specific space based on a space.id' do
+      space = Space.add(space_name: 'Foo', description: 'A lovely home', rate: 50)
+      found_space = Space.find(id: space.id)
+
+      data = DatabaseConnection.query('SELECT * FROM spaces;')
+      data = data.first
+
+      expect(data['id']).to eq found_space.id
+      expect(data['space_name']).to eq found_space.space_name
+
     end
   end
 end
