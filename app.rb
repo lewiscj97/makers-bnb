@@ -49,7 +49,7 @@ class MakersBnb < Sinatra::Base
     erb :sign_in
   end
 
-  post '/sign-in-input' do 
+  post '/sign-in-input' do
     email = params['email']
     password = params['password']
     if User.sign_in(email, password) == true

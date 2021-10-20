@@ -1,4 +1,6 @@
-feature 'Sign in to your user account:' do
+# frozen_string_literal: true
+
+feature 'Sign in to your user account: ' do
   scenario 'User is able to log in to their account' do
     DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Foo', 'foo@bar.com', 'password');")
 
@@ -37,7 +39,7 @@ feature 'Sign in to your user account:' do
     expect(page).to have_current_path('/sign-up')
   end
 
-  scenario 'error message shown when user signs in unsuccessfully' do
+  scenario 'Error message shown when user signs in unsuccessfully' do
     DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Foo', 'foo@bar.com', 'password');")
 
     visit('/sign-in')
