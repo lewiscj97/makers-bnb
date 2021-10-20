@@ -1,0 +1,15 @@
+<h1>Sign in to your Makers BnB account</h1>
+
+<%= flash[:incorrect_details] %>
+
+<form action="/sign-in-input" method="post">
+  <label for="email"> email
+  <input type="text" name="email">
+    <label for="password"> password
+  <input type="password" name="password">
+  <input type="submit" value="Log in">
+</form>
+
+<form action="/sign-up" method="get">
+  <input type="submit" value="Sign up">
+</form>
