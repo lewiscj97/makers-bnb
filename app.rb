@@ -11,6 +11,7 @@ class MakersBnb < Sinatra::Base
   register Sinatra::Flash
 
   get '/' do
+    p session[:user_id]
     erb(:index)
   end
 
@@ -25,10 +26,12 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/sign-up-completed' do
+    p session[:user_id]
     erb(:sign_up_completed)
   end
 
   get '/add-space' do
+    p session[:user_id]
     erb(:add_space)
   end
 
@@ -38,6 +41,7 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/add-space-confirmation' do
+    p session[:user_id]
     erb(:add_space_confirmation)
   end
 
@@ -49,6 +53,8 @@ class MakersBnb < Sinatra::Base
     email = params['email']
     password = params['password']
     if User.sign_in(email, password) == true
+      response = DatabaseConnection.query('SELECT id FROM users WHERE email LIKE $1', [params['email']])
+      session[:user_id] = response.first['id']
       redirect '/'
     else
       flash[:incorrect_details] = 'Incorrect login details entered'
@@ -57,6 +63,7 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/spaces' do
+    p session[:user_id]
     @spaces = Space.all
     erb(:spaces)
   end
