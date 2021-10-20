@@ -9,8 +9,6 @@ class User
     @password = password
   end
 
-  attr_reader :id, :username, :email, :password
-
   def self.sign_in(email, password)
     result = DatabaseConnection.query("SELECT password FROM users WHERE email LIKE $1", [email])
     result_password = result.first['password']
