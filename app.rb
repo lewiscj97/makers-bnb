@@ -44,9 +44,6 @@ class MakersBnb < Sinatra::Base
   post '/sign-in-input' do 
     email = params['email']
     password = params['password']
-    result = User.sign_in(email, password)
-    p result
-    redirect '/'
+    User.sign_in(email, password) ? (redirect '/') : (redirect '/sign-in')
   end
-
 end
