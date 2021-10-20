@@ -53,8 +53,7 @@ class MakersBnb < Sinatra::Base
     email = params['email']
     password = params['password']
     if User.sign_in(email, password) == true
-      response = DatabaseConnection.query('SELECT id FROM users WHERE email LIKE $1', [params['email']])
-      session[:user_id] = response.first['id']
+      session[:user_id] = User.get_user_id(email)
       redirect '/'
     else
       flash[:incorrect_details] = 'Incorrect login details entered'
