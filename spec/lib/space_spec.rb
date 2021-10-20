@@ -51,7 +51,7 @@ describe Space do
   describe '#find' do
     it 'should return a specific space based on a space.id' do
       Space.add(space_name: 'Foo', description: 'A lovely home', rate: 50)
-      data = PG.connect(dbname: 'makersbnb_test').query("SELECT * FROM spaces;")
+      data = DatabaseConnection.query("SELECT * FROM spaces;")
 
       space_id = data.first['id']
       
