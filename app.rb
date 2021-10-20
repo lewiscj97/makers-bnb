@@ -15,7 +15,6 @@ class MakersBnb < Sinatra::Base
   end
 
   post '/sign-up' do
-    p params
     User.create(params['username'], params['email'], params['password'])
     redirect('/sign-up-completed')
   end
@@ -45,5 +44,10 @@ class MakersBnb < Sinatra::Base
     email = params['email']
     password = params['password']
     User.sign_in(email, password) ? (redirect '/') : (redirect '/sign-in')
+  end
+
+  get '/spaces' do
+    @spaces = Space.all
+    erb(:spaces)
   end
 end

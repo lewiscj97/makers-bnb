@@ -13,3 +13,11 @@ def user_sign_up
   page.fill_in :password, with: 'password123'
   page.click_button 'Submit'
 end
+
+def add_a_space
+  visit('/add-space')
+  fill_in 'space_name', with: 'Foo'
+  fill_in 'description', with: 'A lovely home'
+  fill_in 'rate', with: 50
+  click_button 'Add Space'
+end
