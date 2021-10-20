@@ -44,4 +44,18 @@ describe User do
       expect(user.password).to eq 'password123'
     end
   end
+
+  describe "#find" do
+    it 'returns a user object when passed the user id' do
+      DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Foo', 'foo@bar.com', 'password');")
+      response = DatabaseConnection.query("SELECT * FROM users WHERE email LIKE 'foo@bar.com';")
+      id = response.first['id']
+      user = User.find(id)
+      
+      expect(user.id).to eq id
+      expect(user.username).to eq 'Foo'
+      expect(user.email).to eq 'foo@bar.com'
+      expect(user.password).to eq 'protected'
+    end
+  end
 end
