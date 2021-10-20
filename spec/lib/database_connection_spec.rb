@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'database_connection'
 
 describe DatabaseConnection do
@@ -13,7 +15,7 @@ describe DatabaseConnection do
     end
   end
 
-  describe "#query" do
+  describe '#query' do
     it 'executes a query via PG' do
       connection = DatabaseConnection.setup('makersbnb_test')
       expect(connection).to receive(:exec_params).with('SELECT * FROM spaces;', [])

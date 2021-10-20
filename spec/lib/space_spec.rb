@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'space'
 
 describe Space do
@@ -22,7 +23,7 @@ describe Space do
 
       expect(space['space_name']).to eq 'Foo'
       expect(space['description']).to eq 'A lovely home'
-      expect(space['rate']).to eq "50"
+      expect(space['rate']).to eq '50'
     end
   end
 
@@ -32,7 +33,7 @@ describe Space do
       spaces = Space.all
       expect(spaces[0].space_name).to eq 'Foo'
       expect(spaces[0].description).to eq 'A lovely home'
-      expect(spaces[0].rate).to eq "50"
+      expect(spaces[0].rate).to eq '50'
     end
 
     it 'returns multiple spaces from database' do
