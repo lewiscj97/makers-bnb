@@ -1,0 +1,8 @@
+<% @spaces.each_with_index do | space, index |%>
+    <section id=<%=index%>>
+      <p>   <%= space.space_name %></p> 
+      <p>   <%= space.description %></p> 
+      <p>   <%= space.rate %></p> 
+      </br>
+    </section>
+  <% end %>
