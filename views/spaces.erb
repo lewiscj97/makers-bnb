@@ -1,8 +1,10 @@
-<% @spaces.each_with_index do | space, index |%>
-    <section id=<%=index%>>
-      <p>   <%= space.space_name %></p> 
-      <p>   <%= space.description %></p> 
-      <p>   <%= space.rate %></p> 
-      </br>
-    </section>
-  <% end %>
+<% @spaces.each do | space |%>
+  <section id=<%=space.id%>>
+    <h3> 
+      <a href="/spaces/<%= space.id %>">  <%= space.space_name %> </a>
+    </h3>
+    <p>   <%= space.description %></p> 
+    <p>£<%= space.rate %> per night</p> 
+    </br>
+  </section>
+<% end %>

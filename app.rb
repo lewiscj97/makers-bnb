@@ -28,6 +28,11 @@ class MakersBnb < Sinatra::Base
     erb(:sign_up_completed)
   end
 
+  get '/spaces/:id' do
+    @space = Space.find(params[:id])
+    erb(:view_specific_space)
+  end
+
   get '/add-space' do
     erb(:add_space)
   end

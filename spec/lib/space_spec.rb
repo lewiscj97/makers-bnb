@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require 'space'
+require './lib/database_connection'
+require './lib/space'
 
 describe Space do
   describe '#initialize' do
@@ -60,6 +61,19 @@ describe Space do
       expect(spaces[0].space_name).to eq 'Foo'
       expect(spaces[1].space_name).to eq 'Bar'
       expect(spaces[2].space_name).to eq 'Test'
+    end
+  end
+
+  describe '#find' do
+    it 'should return a specific space based on a space.id' do
+      Space.add(space_name: 'Foo', description: 'A lovely home', rate: 50)
+      data = DatabaseConnection.query("SELECT * FROM spaces;")
+
+      space_id = data.first['id']
+      
+      space = Space.find(space_id)
+      expect(space.id).to eq space_id
+      expect(space.space_name).to eq 'Foo'
     end
   end
 end
