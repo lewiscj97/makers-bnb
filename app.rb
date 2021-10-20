@@ -19,7 +19,8 @@ class MakersBnb < Sinatra::Base
   end
 
   post '/sign-up' do
-    User.create(params['username'], params['email'], params['password'])
+    user = User.create(params['username'], params['email'], params['password'])
+    session[:user_id] = user.id
     redirect('/sign-up-completed')
   end
 
@@ -53,6 +54,7 @@ class MakersBnb < Sinatra::Base
     email = params['email']
     password = params['password']
     if User.sign_in(email, password) == true
+      session[:user_id] = User.get_user_id(email)
       redirect '/'
     else
       flash[:incorrect_details] = 'Incorrect login details entered'
