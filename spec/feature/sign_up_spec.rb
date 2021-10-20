@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 feature 'Sign up: ' do
   scenario 'page will have a title' do
     visit('/sign-up')
