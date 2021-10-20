@@ -37,12 +37,15 @@ class MakersBnb < Sinatra::Base
     erb(:add_space_confirmation)
   end
 
-  post '/sign-in' do
+  get '/sign-in' do
     erb :sign_in
   end
 
-  post '/sign-in-input' do
-    User.sign_in
+  post '/sign-in-input' do 
+    email = params['email']
+    password = params['password']
+    result = User.sign_in(email, password)
+    p result
     redirect '/'
   end
 
