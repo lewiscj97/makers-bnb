@@ -11,12 +11,18 @@ feature 'Sign up: ' do
     expect(page).to have_content('Create a username')
     expect(page).to have_content('Enter an email address')
     expect(page).to have_content('Create a password')
-    expect(page).to have_button('Submit')
+    expect(page).to have_button('Sign up')
   end
 
-  scenario 'A user can sign up' do
-    user_sign_up
-    expect(page).to have_current_path('/sign-up-completed')
-    expect(page).to have_content('You have created an account.')
+  scenario 'Confirmation message shown when user signs up' do
+    DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Foo', 'foo@bar.com', 'password');")
+
+    visit('/sign-up')
+    fill_in 'username', with: 'Foo'
+    fill_in 'email', with: 'foo@bar.com'
+    fill_in 'password', with: 'password'
+    click_button 'Sign up'
+    expect(page).to have_content('Congratulations, you have successfully signed up to Makers BnB! You are now logged in!')
+    expect(page).to have_current_path('/')
   end
 end

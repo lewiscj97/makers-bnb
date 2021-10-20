@@ -13,7 +13,7 @@ def user_sign_up
   page.fill_in :username, with: 'Brian'
   page.fill_in :email, with: 'test@email.com'
   page.fill_in :password, with: 'password123'
-  page.click_button 'Submit'
+  page.click_button 'Sign up'
 end
 
 def add_a_space
