@@ -14,7 +14,7 @@ class Space
 
   attr_reader :id, :space_name, :description, :rate, :user_id
 
-  def self.add(space_name:, description:, rate:)
+  def self.add(space_name:, description:, rate:, user_id: null)
     result = DatabaseConnection.query(
       'INSERT INTO spaces (space_name, description, rate) VALUES($1, $2, $3) RETURNING space_name, description, rate;',
       [space_name, description, rate]

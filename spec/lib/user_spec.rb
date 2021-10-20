@@ -50,7 +50,7 @@ describe User do
       response = DatabaseConnection.query("SELECT * FROM users WHERE email LIKE 'foo@bar.com';")
       id = response.first['id']
       user = User.find(id)
-      
+
       expect(user.id).to eq id
       expect(user.username).to eq 'Foo'
       expect(user.email).to eq 'foo@bar.com'
@@ -58,7 +58,7 @@ describe User do
     end
   end
 
-  describe "#get_user_id" do
+  describe '#get_user_id' do
     it 'returns the user_id when passed the email address' do
       DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Foo', 'foo@bar.com', 'password');")
       response = DatabaseConnection.query("SELECT id FROM users WHERE email LIKE 'foo@bar.com';")
