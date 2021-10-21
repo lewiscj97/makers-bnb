@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 feature 'Homepage: ' do
-  scenario 'has a naviagtion bar' do
+  scenario 'has a navigation bar' do
     visit('/')
     expect(page).to have_link('Home')
     expect(page).to have_link('Sign in')
     expect(page).to have_link('View spaces')
+    expect(page).to have_link('My Listings')
     expect(page).to have_link('Add a space')
   end
 
@@ -32,4 +33,11 @@ feature 'Homepage: ' do
     click_link('Add a space')
     expect(page).to have_current_path('/add-space')
   end
+
+  scenario 'a user can view their listings' do
+    visit('/')
+    click_link('My Listings')
+    expect(page).to have_current_path('/my-listings')
+  end
+
 end
