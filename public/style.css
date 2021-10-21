@@ -9,4 +9,19 @@ body {
 
 a {
     text-decoration: none;
+    padding: 1em;
+}
+
+a:hover{
+    background-color: #ebebeb;
+}
+
+.layout-navbar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.layout-navbar-right{
+    margin-left: auto;
 }
