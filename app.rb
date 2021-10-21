@@ -5,6 +5,7 @@ require 'sinatra/flash'
 require './lib/database_connection_setup'
 require './lib/user'
 require './lib/space'
+require './lib/booking'
 
 class MakersBnb < Sinatra::Base
   enable :sessions
@@ -68,5 +69,16 @@ class MakersBnb < Sinatra::Base
   get '/my_listings/:id' do
     @space = Space.my_listings(session[:id])
     erb(:view_specific_space)
+  end
+
+  post '/booking/:id' do
+    unless session[:user_id].nil?
+      Booking.create(space_id: params['id'], user_id: session[:user_id], date_from: params['date_from'], date_to: params['date_to'])
+      flash[:booking_request] = 'Booking request submitted'
+      redirect('/')
+    else
+      flash[:user_not_signed_in] = 'You must be signed in to make a booking request'
+      redirect("/spaces/#{params['id']}")
+    end
   end
 end
