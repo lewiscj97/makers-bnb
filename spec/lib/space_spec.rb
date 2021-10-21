@@ -22,11 +22,11 @@ describe Space do
         Space.add(space_name: 'Foo', description: 'A lovely home', rate: 50)
         response = DatabaseConnection.query('SELECT * FROM spaces;')
         space = response.first
-  
+
         expect(space['space_name']).to eq 'Foo'
         expect(space['description']).to eq 'A lovely home'
         expect(space['rate']).to eq '50'
-      end  
+      end
     end
 
     context 'user is logged in' do
@@ -34,14 +34,13 @@ describe Space do
         Space.add(space_name: 'Foo', description: 'A lovely home', rate: 50, user_id: 123)
         response = DatabaseConnection.query('SELECT * FROM spaces;')
         space = response.first
-  
+
         expect(space['space_name']).to eq 'Foo'
         expect(space['description']).to eq 'A lovely home'
         expect(space['rate']).to eq '50'
         expect(space['user_id']).to eq '123'
       end
     end
-    
   end
 
   describe '#all' do
@@ -67,10 +66,10 @@ describe Space do
   describe '#find' do
     it 'should return a specific space based on a space.id' do
       Space.add(space_name: 'Foo', description: 'A lovely home', rate: 50)
-      data = DatabaseConnection.query("SELECT * FROM spaces;")
+      data = DatabaseConnection.query('SELECT * FROM spaces;')
 
       space_id = data.first['id']
-      
+
       space = Space.find(space_id)
       expect(space.id).to eq space_id
       expect(space.space_name).to eq 'Foo'

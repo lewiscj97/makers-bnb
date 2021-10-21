@@ -14,7 +14,7 @@ feature 'User is signed in, creates a space' do
     # Add user to database
     DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Foo', 'foo@bar.com', 'password');")
     id = User.get_user_id('foo@bar.com')
-    
+
     # Sign in
     visit('/sign-in')
 
