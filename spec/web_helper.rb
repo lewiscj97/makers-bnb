@@ -6,6 +6,7 @@ def drop_test_db
   # Clear the tables
   connection.exec('TRUNCATE users;')
   connection.exec('TRUNCATE spaces;')
+  connection.exec('TRUNCATE bookings;')
 end
 
 def user_sign_up
