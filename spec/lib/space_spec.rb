@@ -75,4 +75,17 @@ describe Space do
       expect(space.space_name).to eq 'Foo'
     end
   end
+
+  describe '#my_listings(user_id)' do
+    it 'should return a list of spaces belonging to a specific user_id' do
+      Space.add(space_name: 'Foo', description: 'A lovely home', rate: 50)
+      data = DatabaseConnection.query('SELECT * FROM spaces;')
+
+      space_id = data.first['id']
+
+      space = Space.find(space_id)
+      expect(space.id).to eq space_id
+      expect(space.space_name).to eq 'Foo'
+    end
+  end
 end
