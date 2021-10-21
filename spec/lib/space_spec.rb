@@ -78,14 +78,15 @@ describe Space do
 
   describe '#my_listings(user_id)' do
     it 'should return a list of spaces belonging to a specific user_id' do
-      Space.add(space_name: 'Foo', description: 'A lovely home', rate: 50)
-      data = DatabaseConnection.query('SELECT * FROM spaces;')
+      # Adding a space with a user_id of 1
+      DatabaseConnection.query("INSERT INTO spaces(space_name, description, rate, user_id) VALUES('foo', 'foobar', '10', '1');")
 
-      space_id = data.first['id']
+      spaces = Space.my_listings('1')
+      space = spaces.first
 
-      space = Space.find(space_id)
-      expect(space.id).to eq space_id
-      expect(space.space_name).to eq 'Foo'
+      expect(space.space_name).to eq 'foo'
+      expect(space.description).to eq 'foobar'
+      expect(space.user_id).to eq '1'
     end
   end
 end
