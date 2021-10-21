@@ -52,7 +52,7 @@ feature 'Sign in to your user account: ' do
 
     user_sign_in
 
-    expect(page).to have_content('You have successfully logged in!')
+    expect(page).to have_content('You have successfully signed in!')
     expect(page).to have_current_path('/')
   end
 end
