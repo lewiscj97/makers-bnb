@@ -7,7 +7,6 @@ feature 'Homepage: ' do
     expect(page).to have_link('Sign in')
     expect(page).to have_link('View spaces')
     expect(page).to have_link('My Listings')
-    expect(page).to have_link('Add a space')
   end
 
   scenario 'a user can view the homepage' do
@@ -26,12 +25,6 @@ feature 'Homepage: ' do
     visit('/')
     click_link('View spaces')
     expect(page).to have_current_path('/spaces')
-  end
-
-  scenario 'a user can add a space' do
-    visit('/')
-    click_link('Add a space')
-    expect(page).to have_current_path('/add-space')
   end
 
   scenario 'a user can view their listings' do
@@ -55,5 +48,8 @@ feature 'Homepage: ' do
 
     user_sign_in_sign_out_helper
     expect(page).to have_content('Add a space')
+
+    click_link('Add a space')
+    expect(page).to have_current_path('/add-space')
   end
 end
