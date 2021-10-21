@@ -36,16 +36,14 @@ class MakersBnb < Sinatra::Base
   end
 
   post '/add-space' do
-    Space.add(space_name: params[:space_name], description: params[:description], rate: params[:rate], user_id: session[:user_id])
-    redirect('/add-space-confirmation')
-  end
-
-  get '/add-space-confirmation' do
-    erb(:add_space_confirmation)
+    @space = Space.add(space_name: params[:space_name], description: params[:description], rate: params[:rate],
+              user_id: session[:user_id])
+    flash[:add_space_success] = 'You have successfully added a space!'
+    redirect("/spaces/#{@space.id}")
   end
 
   get '/sign-in' do
-    erb :sign_in
+    erb(:sign_in)
   end
 
   post '/sign-in-input' do
@@ -54,10 +52,10 @@ class MakersBnb < Sinatra::Base
     if User.sign_in(email, password) == true
       session[:user_id] = User.get_user_id(email)
       flash[:sign_in_success] = 'You have successfully logged in!'
-      redirect '/'
+      redirect('/')
     else
       flash[:incorrect_details] = 'Incorrect login details entered'
-      redirect '/sign-in'
+      redirect('/sign-in')
     end
   end
 
