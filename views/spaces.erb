@@ -1,3 +1,7 @@
+<% if @spaces.length == 0 %>
+<h3>Sorry!</h3>
+<h4>There are no available spaces</h4>
+<% else %>
 <% @spaces.each do | space |%>
   <section id=<%=space.id%>>
     <h3> 
@@ -7,4 +11,5 @@
     <p>£<%= space.rate %> per night</p> 
     <br>
   </section>
+<% end %>
 <% end %>
