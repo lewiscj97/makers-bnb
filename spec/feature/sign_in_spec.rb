@@ -4,10 +4,7 @@ feature 'Sign in to your user account: ' do
   scenario 'User is able to log in to their account' do
     DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Foo', 'foo@bar.com', 'password');")
 
-    visit('/sign-in')
-    fill_in 'email', with: 'foo@bar.com'
-    fill_in 'password', with: 'password'
-    click_button 'Log in'
+    user_sign_in
 
     expect(page).to have_current_path('/')
   end
@@ -25,7 +22,7 @@ feature 'Sign in to your user account: ' do
 
   scenario 'User email not in database' do
     visit('/sign-in')
-    fill_in 'email', with: 'foo@bar.com'
+    fill_in 'email', with: 'foo1@bar.com'
     fill_in 'password', with: 'password'
     click_button 'Log in'
 
@@ -53,10 +50,7 @@ feature 'Sign in to your user account: ' do
   scenario 'Message shown when user signs' do
     DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Foo', 'foo@bar.com', 'password');")
 
-    visit('/sign-in')
-    fill_in 'email', with: 'foo@bar.com'
-    fill_in 'password', with: 'password'
-    click_button 'Log in'
+    user_sign_in
 
     expect(page).to have_content('You have successfully logged in!')
     expect(page).to have_current_path('/')
