@@ -5,12 +5,11 @@ feature 'view a specific space: ' do
     add_a_space
 
     visit('/spaces')
-    within("section[@id='0']") do
-      click_link('Foo')
-    end
+    click_link('Foo')
+    
 
     expect(page).to have_content('Foo')
-    expect(page).to have_content('Description: A lovely home')
+    expect(page).to have_content('A lovely home')
     expect(page).to have_content('£50 per night')
   end
 end
