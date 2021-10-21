@@ -5,19 +5,18 @@
   <link rel="stylesheet" href="<%= '/style.css' %>">
 </head>
 <body>
-<section class="layout-navbar"/>
-<h1>
-  <a href="/spaces">Makers BnB</a>
-</h1>
-
-<% if session[:user_id].nil? %>
+<h1>Makers BnB</h1>
+<section class="layout-navbar">
+  <a href="/">Home</a>
+  <a href="/spaces">View spaces</a>
+  <% if session[:user_id].nil? %>
   <a href="/sign-in" class="layout-navbar-right">Sign in</a>
-<% else%>
+  <% else %>
   <a href="/add-space" class="layout-navbar-right">Add a space</a>
-  <a href="/sign-out" class="layout-navbar-right">My Requests</a>
+  <a href="/<%= '#{session[:user_id]}/spaces' %>" class="layout-navbar-right">My Listings</a>
+  <a href="/<%= '#{session[:user_id]}/requests' %>" class="layout-navbar-right">My requests</a>
   <a href="/sign-out" class="layout-navbar-right">Sign out</a>
-<% end %>
-
+  <% end %>
 </section>
 <%= yield %>
 </body>

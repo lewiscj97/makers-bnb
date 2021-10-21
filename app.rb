@@ -26,11 +26,6 @@ class MakersBnb < Sinatra::Base
     redirect '/'
   end
 
-  get '/spaces/:id' do
-    @space = Space.find(params[:id])
-    erb(:view_specific_space)
-  end
-
   get '/add-space' do
     erb(:add_space)
   end
@@ -61,7 +56,17 @@ class MakersBnb < Sinatra::Base
 
   get '/spaces' do
     @spaces = Space.all
-    erb(:spaces)
+    erb(:all_spaces)
+  end
+
+  get '/spaces/:id' do
+    @space = Space.find(params[:id])
+    erb(:view_specific_space)
+  end
+
+  get '/:id/spaces' do
+    @spaces = Space.my_listings(session[:user_id])
+    erb(:all_spaces)
   end
 
   get '/sign-out' do
