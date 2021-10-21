@@ -10,7 +10,7 @@ feature 'Signing out:' do
     scenario 'Clicking sign out signs the user out' do
       click_on 'Sign out'
       expect(page).to have_content('Sign in')
-      expect(page).to have_content('You have have successfully signed out!')
+      expect(page).to have_content('You have successfully signed out!')
     end
   end
 end
