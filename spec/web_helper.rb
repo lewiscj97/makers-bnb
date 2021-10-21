@@ -31,3 +31,8 @@ def add_a_space
   fill_in 'rate', with: 50
   click_button 'Add Space'
 end
+
+def user_sign_in_sign_out_helper
+  DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Foo', 'foo@bar.com', 'password');")
+  user_sign_in
+end
