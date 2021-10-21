@@ -17,7 +17,7 @@ class Booking
     )
   end
 
-  def self.find_by_id(user_id:)
+  def self.find_by_id(user_id)
     result = DatabaseConnection.query('SELECT * FROM bookings WHERE user_id=$1;', [user_id])
     result.map do |value|
       Booking.new(id: value['id'], space_id: value['space_id'], user_id: value['user_id'],
