@@ -38,12 +38,8 @@ class MakersBnb < Sinatra::Base
     Space.add(space_name: params[:space_name], description: params[:description], rate: params[:rate],
               user_id: session[:user_id])
     flash[:add_space_success] = 'You have successfully added a space!'
-    redirect("/spaces")
+    redirect('/spaces')
   end
-
-  # get "/spaces" do
-  #   erb(:spaces)
-  # end
 
   get '/sign-in' do
     erb(:sign_in)

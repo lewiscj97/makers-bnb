@@ -8,12 +8,19 @@ def drop_test_db
   connection.exec('TRUNCATE spaces;')
 end
 
+def user_sign_in
+  visit('/sign-in')
+  fill_in :email, with: 'foo@bar.com'
+  fill_in :password, with: 'password'
+  click_button 'Log in'
+end
+
 def user_sign_up
   visit('/sign-up')
-  page.fill_in :username, with: 'Brian'
-  page.fill_in :email, with: 'test@email.com'
-  page.fill_in :password, with: 'password123'
-  page.click_button 'Sign up'
+  fill_in :username, with: 'Foo'
+  fill_in :email, with: 'foo@bar.com'
+  fill_in :password, with: 'password'
+  click_button 'Sign up'
 end
 
 def add_a_space
