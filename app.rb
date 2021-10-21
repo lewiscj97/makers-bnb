@@ -80,4 +80,7 @@ class MakersBnb < Sinatra::Base
       redirect("/spaces/#{params['id']}")
     end
   end
+
+  get '/:user_id/requests' do
+  end
 end
