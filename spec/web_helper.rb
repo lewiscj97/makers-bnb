@@ -13,7 +13,7 @@ def user_sign_in
   visit('/sign-in')
   fill_in :email, with: 'foo@bar.com'
   fill_in :password, with: 'password'
-  click_button 'Log in'
+  click_button 'Sign in'
 end
 
 def user_sign_up
