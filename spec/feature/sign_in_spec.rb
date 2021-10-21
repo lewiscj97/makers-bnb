@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 feature 'Sign in to your user account: ' do
-  scenario 'User is able to log in to their account' do
+  scenario 'User is able to sign in to their account' do
     DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Foo', 'foo@bar.com', 'password');")
 
     user_sign_in
@@ -15,7 +15,7 @@ feature 'Sign in to your user account: ' do
     visit('/sign-in')
     fill_in 'email', with: 'foo@bar.com'
     fill_in 'password', with: 'incorrectpassword'
-    click_button 'Log in'
+    click_button 'Sign in'
 
     expect(page).to have_current_path('/sign-in')
   end
@@ -24,7 +24,7 @@ feature 'Sign in to your user account: ' do
     visit('/sign-in')
     fill_in 'email', with: 'foo1@bar.com'
     fill_in 'password', with: 'password'
-    click_button 'Log in'
+    click_button 'Sign in'
 
     expect(page).to have_current_path('/sign-in')
   end
@@ -42,7 +42,7 @@ feature 'Sign in to your user account: ' do
     visit('/sign-in')
     fill_in 'email', with: 'foo@bar.com'
     fill_in 'password', with: 'incorrectpassword'
-    click_button 'Log in'
+    click_button 'Sign in'
 
     expect(page).to have_content('Incorrect login details entered')
   end
