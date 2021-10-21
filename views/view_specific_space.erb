@@ -2,5 +2,11 @@
 <p>£<%= @space.rate %> per night</p>
 <h3>Description:</h3>
 <p><%= @space.description %></p>
-<input type='submit' value='Book Now'>
 
+<%= flash[:user_not_signed_in] %>
+<h2>Book Now!</h2>
+<form method="post" action="/booking/<%=@space.id%>">
+  <input name="date_from" type="date" required>
+  <input name="date_to" type="date" required>
+  <input type="submit" value="Submit Request">
+</form>
