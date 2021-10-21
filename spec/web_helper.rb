@@ -34,8 +34,5 @@ end
 
 def user_sign_in_sign_out_helper
   DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Foo', 'foo@bar.com', 'password');")
-  visit('/sign-in')
-  fill_in 'email', with: 'foo@bar.com'
-  fill_in 'password', with: 'password'
-  click_button 'Log in'
+  user_sign_in
 end
