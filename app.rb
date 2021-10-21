@@ -49,7 +49,7 @@ class MakersBnb < Sinatra::Base
       flash[:sign_in_success] = 'You have successfully signed in!'
       redirect('/')
     else
-      flash[:incorrect_details] = 'Incorrect login details entered'
+      flash[:incorrect_details] = 'Incorrect sign in details entered'
       redirect('/sign-in')
     end
   end
