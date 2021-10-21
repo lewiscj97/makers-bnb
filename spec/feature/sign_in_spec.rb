@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 feature 'Sign in to your user account: ' do
-  scenario 'User is able to log in to their account' do
+  scenario 'User is able to sign in to their account' do
     DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Foo', 'foo@bar.com', 'password');")
 
     user_sign_in
@@ -9,13 +9,13 @@ feature 'Sign in to your user account: ' do
     expect(page).to have_current_path('/')
   end
 
-  scenario 'User is not able to login if their password is incorrect' do
+  scenario 'User is not able to sign in if their password is incorrect' do
     DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Foo', 'foo@bar.com', 'password');")
 
     visit('/sign-in')
     fill_in 'email', with: 'foo@bar.com'
     fill_in 'password', with: 'incorrectpassword'
-    click_button 'Log in'
+    click_button 'Sign in'
 
     expect(page).to have_current_path('/sign-in')
   end
@@ -24,7 +24,7 @@ feature 'Sign in to your user account: ' do
     visit('/sign-in')
     fill_in 'email', with: 'foo1@bar.com'
     fill_in 'password', with: 'password'
-    click_button 'Log in'
+    click_button 'Sign in'
 
     expect(page).to have_current_path('/sign-in')
   end
@@ -42,9 +42,9 @@ feature 'Sign in to your user account: ' do
     visit('/sign-in')
     fill_in 'email', with: 'foo@bar.com'
     fill_in 'password', with: 'incorrectpassword'
-    click_button 'Log in'
+    click_button 'Sign in'
 
-    expect(page).to have_content('Incorrect login details entered')
+    expect(page).to have_content('Incorrect sign in details entered')
   end
 
   scenario 'Message shown when user signs' do
@@ -52,7 +52,7 @@ feature 'Sign in to your user account: ' do
 
     user_sign_in
 
-    expect(page).to have_content('You have successfully logged in!')
+    expect(page).to have_content('You have successfully signed in!')
     expect(page).to have_current_path('/')
   end
 end

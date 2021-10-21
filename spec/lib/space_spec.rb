@@ -17,7 +17,7 @@ describe Space do
   end
 
   describe '#add_space' do
-    context 'user is not logged in' do
+    context 'user is not signed in' do
       it 'should take in a space name, description and rate' do
         Space.add(space_name: 'Foo', description: 'A lovely home', rate: 50)
         response = DatabaseConnection.query('SELECT * FROM spaces;')
@@ -29,7 +29,7 @@ describe Space do
       end
     end
 
-    context 'user is logged in' do
+    context 'user is signed in' do
       it 'should be passed a space name, description, rate and the userid' do
         Space.add(space_name: 'Foo', description: 'A lovely home', rate: 50, user_id: 123)
         response = DatabaseConnection.query('SELECT * FROM spaces;')
