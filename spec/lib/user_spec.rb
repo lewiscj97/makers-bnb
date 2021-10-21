@@ -69,4 +69,16 @@ describe User do
       expect(expected_id).to eq id
     end
   end
+
+  describe '#get_username' do
+    it 'should return the username' do
+      DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Foo', 'foo@bar.com', 'password');")
+      response = DatabaseConnection.query("SELECT username FROM users WHERE email LIKE 'foo@bar.com';")
+      username = response.first['username']
+
+      result = User.get_username('foo@bar.com')
+
+      expect(username).to eq result
+    end
+  end
 end
