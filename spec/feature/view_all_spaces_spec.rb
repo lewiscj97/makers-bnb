@@ -6,4 +6,10 @@ feature 'View all spaces: ' do
     visit('/spaces')
     expect(page).to have_content('Foo')
   end
+
+  scenario 'no available spaces' do
+    visit('/spaces')
+    expect(page).to have_content('Sorry!')
+    expect(page).to have_content('There are no available spaces')
+  end
 end
