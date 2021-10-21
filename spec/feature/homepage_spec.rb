@@ -3,17 +3,13 @@
 feature 'Homepage: ' do
   scenario 'has a navigation bar' do
     visit('/')
-    expect(page).to have_link('Home')
     expect(page).to have_link('Sign in')
-    expect(page).to have_link('View spaces')
-    expect(page).to have_link('My Listings')
-    expect(page).to have_link('Add a space')
   end
 
   scenario 'a user can view the homepage' do
     visit('/')
-    click_link('Home')
-    expect(page).to have_current_path('/')
+    click_link('Makers BnB')
+    expect(page).to have_current_path('/spaces')
   end
 
   scenario 'a user can sign in' do
@@ -22,14 +18,8 @@ feature 'Homepage: ' do
     expect(page).to have_current_path('/sign-in')
   end
 
-  scenario 'a user can view spaces' do
-    visit('/')
-    click_link('View spaces')
-    expect(page).to have_current_path('/spaces')
-  end
-
   scenario 'a user can add a space' do
-    visit('/')
+    user_sign_up
     click_link('Add a space')
     expect(page).to have_current_path('/add-space')
   end

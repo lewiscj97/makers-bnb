@@ -87,5 +87,6 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/:user_id/requests' do
+    erb(:my_requests)
   end
 end

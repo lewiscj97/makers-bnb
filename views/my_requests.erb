@@ -1,0 +1,10 @@
+<% @requests.each do | space |%>
+  <section id=<%=space.id%>>
+    <h3> 
+      <a href="/requests/<%= request.id %>">  <%= request.request_name %> </a>
+    </h3>
+    <p>   <%= request.description %></p> 
+    <p>£<%= request.rate %> per night</p> 
+    <br>
+  </section>
+<% end %>
