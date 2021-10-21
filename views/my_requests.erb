@@ -1,10 +1,8 @@
-<% @requests.each do | space |%>
-  <section id=<%=space.id%>>
-    <h3> 
-      <a href="/requests/<%= request.id %>">  <%= request.request_name %> </a>
-    </h3>
-    <p>   <%= request.description %></p> 
-    <p>£<%= request.rate %> per night</p> 
+<% @bookings.each do | request |%>
+  <section id=<%=request.id%>>
+    <p><%= request.date_from %></p> 
+    <p><%= request.date_to %></p> 
+    <p><%= request.confirmed %></p> 
     <br>
   </section>
 <% end %>

@@ -41,11 +41,11 @@ describe Booking do
       
       # List a space with the user_id set to the owner id
       DatabaseConnection.query("INSERT INTO spaces(id, space_name, description, rate, user_id) VALUES(1, 'Space', 'A lovely home', 50 , 1);")
-
+      Booking.create(space_id: 1, user_id: 1, date_from: '2021-10-20', date_to: '2021-10-23')
+      
       Booking.find_by_id(user_id: 1)
-
+      
       response = DatabaseConnection.query('SELECT * FROM bookings WHERE user_id=1;')
-      p response
       result = response.first
 
       expect(result['date_from']).to eq '2021-10-20'

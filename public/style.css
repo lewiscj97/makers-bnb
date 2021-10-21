@@ -9,7 +9,7 @@ body {
 
 a {
     text-decoration: none;
-    padding: 1em;
+    /* padding: 1em; */
 }
 
 a:hover{
@@ -19,9 +19,9 @@ a:hover{
 .layout-navbar {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    justify-items: flex-end;
 }
 
 .layout-navbar-right{
-    margin-left: auto;
+    width: 1em;
 }

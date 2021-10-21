@@ -20,7 +20,7 @@ class Booking
   def self.find_by_id(user_id:)
     result = DatabaseConnection.query('SELECT * FROM bookings WHERE user_id=$1;', [user_id])
     result.map do |value|
-      Space.new(id: value['id'], space_id: value['space_id'], user_id: value['user_id'],
+      Booking.new(id: value['id'], space_id: value['space_id'], user_id: value['user_id'],
       date_from: value['date_from'], date_to: value['date_to'], confirmed: value['confirmed'])
     end
   end

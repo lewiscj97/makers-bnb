@@ -11,8 +11,8 @@
   <a href="/sign-in" class="layout-navbar-right">Sign in</a>
   <% else %>
   <a href="/add-space" class="layout-navbar-right">Add a space</a>
-  <a href="/<%= '#{session[:user_id]}/spaces' %>" class="layout-navbar-right">My Listings</a>
-  <a href="/<%= '#{session[:user_id]}/requests' %>" class="layout-navbar-right">My requests</a>
+  <a href="/<%= "#{session[:user_id]}/spaces" %>" class="layout-navbar-right">My Listings</a>
+  <a href="/<%= "#{session[:user_id]}/requests" %>" class="layout-navbar-right">My requests</a>
   <a href="/sign-out" class="layout-navbar-right">Sign out</a>
   <% end %>
 </section>
