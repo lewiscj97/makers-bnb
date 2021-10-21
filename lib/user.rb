@@ -35,5 +35,10 @@ class User
   def self.get_user_id(email)
     response = DatabaseConnection.query('SELECT id FROM users WHERE email LIKE $1', [email])
     response.first['id']
+    end
+
+  def self.get_username(email)
+    response = DatabaseConnection.query('SELECT username FROM users WHERE email LIKE $1', [email])
+    response.first['username']
   end
 end

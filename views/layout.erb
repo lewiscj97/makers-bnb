@@ -9,11 +9,12 @@
 <section class="layout-navbar">
   <a href="/">Home</a>
   <a href="/spaces">View spaces</a>
-  <a href="/add-space">Add a space</a>
-  <a href="/<%= "#{session[:user_id]}/spaces" %>">My Listings</a>
   <% if session[:user_id].nil? %>
     <a href="/sign-in" class="layout-navbar-right">Sign in</a>
   <% else %>
+    <a href="/<%= "#{session[:user_id]}/spaces" %>">My Listings</a>
+    <a href="/add-space">Add a space</a>
+    <p class="layout-navbar-right"><%= session[:username] %></p>
     <a href="/sign-out" class="layout-navbar-right">Sign out</a>
   <% end %>
 </section>
