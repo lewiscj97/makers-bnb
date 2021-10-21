@@ -12,6 +12,11 @@
   <a href="/add-space">Add a space</a>
   <a href="/<%= "#{session[:user_id]}/spaces" %>">My Listings</a>
   <a href="/sign-in" class="layout-navbar-right">Sign in</a>
+  <% if session[:user_id].nil? %>
+    <a href="/sign-in" class="layout-navbar-right">Sign in</a>
+  <% else %>
+    <a href="/sign-out" class="layout-navbar-right">Sign out</a>
+  <% end %>
 </section>
 <%= yield %>
 </body>
