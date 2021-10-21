@@ -14,6 +14,7 @@
   <% if session[:user_id].nil? %>
     <a href="/sign-in" class="layout-navbar-right">Sign in</a>
   <% else %>
+    <p class="layout-navbar-right"><%= session[:username] %></p>
     <a href="/sign-out" class="layout-navbar-right">Sign out</a>
   <% end %>
 </section>

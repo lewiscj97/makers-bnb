@@ -22,7 +22,7 @@ class MakersBnb < Sinatra::Base
   post '/sign-up' do
     user = User.create(params['username'], params['email'], params['password'])
     session[:user_id] = user.id
-    session[:username] = User.get_username(email)
+    session[:username] = User.get_username(params['email'])
     flash[:sign_up_success] = 'Congratulations, you have successfully signed up to Makers BnB! You are now logged in!'
     redirect '/'
   end
