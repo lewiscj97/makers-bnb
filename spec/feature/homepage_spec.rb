@@ -35,9 +35,11 @@ feature 'Homepage: ' do
   end
 
   scenario 'a user can view their listings' do
+    user_sign_up
+    id = User.get_user_id('test@email.com')
+
     visit('/')
     click_link('My Listings')
-    expect(page).to have_current_path('/my-listings')
+    expect(page).to have_current_path("/my-listings/#{id}")
   end
-
 end
