@@ -64,6 +64,12 @@ class MakersBnb < Sinatra::Base
     erb(:spaces)
   end
 
+  get '/sign-out' do
+    session[:user_id] = nil
+    flash[:sign_out] = 'You have signed out'
+    redirect('/')
+  end
+  
   post '/booking/:id' do
     unless session[:user_id].nil?
       Booking.create(space_id: params['id'], user_id: session[:user_id], date_from: params['date_from'], date_to: params['date_to'])
