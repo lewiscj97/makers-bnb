@@ -1,4 +1,4 @@
-# # frozen_string_literal: true
+# frozen_string_literal: true
 
 feature 'view a specific space: ' do
   scenario 'it should return space_name, description and rate when found' do

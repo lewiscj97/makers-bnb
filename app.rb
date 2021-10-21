@@ -42,12 +42,8 @@ class MakersBnb < Sinatra::Base
     redirect("/spaces/#{@space.id}")
   end
 
-  get '/add-space-confirmation' do
-    erb(:add_space_confirmation)
-  end
-
   get '/sign-in' do
-    erb :sign_in
+    erb(:sign_in)
   end
 
   post '/sign-in-input' do
@@ -56,10 +52,10 @@ class MakersBnb < Sinatra::Base
     if User.sign_in(email, password) == true
       session[:user_id] = User.get_user_id(email)
       flash[:sign_in_success] = 'You have successfully logged in!'
-      redirect '/'
+      redirect('/')
     else
       flash[:incorrect_details] = 'Incorrect login details entered'
-      redirect '/sign-in'
+      redirect('/sign-in')
     end
   end
 
