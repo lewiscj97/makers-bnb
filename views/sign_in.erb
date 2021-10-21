@@ -5,14 +5,16 @@
 <form action="/sign-in-input" method="post">
   <label for="email">Enter your email</label>
   <br>
-  <input type="text" name="email">
+  <input type="email" required name="email" oninvalid="this.setCustomValidity('Enter your email here')"
+  oninput="this.setCustomValidity('')">
   <br>
   <label for="password">Enter your password</label>
   <br>
-  <input type="password" name="password">
+  <input type="password" required name="password" oninvalid="this.setCustomValidity('Enter your password here')"
+  oninput="this.setCustomValidity('')">
   <br>
   <br>
-  <input type="submit" value="Log in">
+  <input type="submit" value="Sign in">
 </form>
 <br>
 <form action="/sign-up" method="get">

@@ -13,7 +13,7 @@ feature 'Making a booking' do
     visit('/sign-in')
     fill_in 'email', with: 'foo@bar.com'
     fill_in 'password', with: 'password'
-    click_button 'Log in'
+    click_button 'Sign in'
 
     visit('/spaces/1')
     fill_in 'date_from', with: '2021-10-20'

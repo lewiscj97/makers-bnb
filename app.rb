@@ -22,13 +22,9 @@ class MakersBnb < Sinatra::Base
   post '/sign-up' do
     user = User.create(params['username'], params['email'], params['password'])
     session[:user_id] = user.id
-    flash[:sign_up_success] = 'Congratulations, you have successfully signed up to Makers BnB! You are now logged in!'
+    flash[:sign_up_success] = 'Congratulations, you have successfully signed up to Makers BnB! You are now signed in!'
+    session[:username] = User.get_username(params['email'])
     redirect '/'
-  end
-
-  get '/spaces/:id' do
-    @space = Space.find(params[:id])
-    erb(:view_specific_space)
   end
 
   get '/add-space' do
@@ -51,19 +47,36 @@ class MakersBnb < Sinatra::Base
     password = params['password']
     if User.sign_in(email, password) == true
       session[:user_id] = User.get_user_id(email)
-      flash[:sign_in_success] = 'You have successfully logged in!'
+      session[:username] = User.get_username(email)
+      flash[:sign_in_success] = 'You have successfully signed in!'
       redirect('/')
     else
-      flash[:incorrect_details] = 'Incorrect login details entered'
+      flash[:incorrect_details] = 'Incorrect sign in details entered'
       redirect('/sign-in')
     end
   end
 
   get '/spaces' do
     @spaces = Space.all
-    erb(:spaces)
+    erb(:all_spaces)
   end
 
+  get '/spaces/:id' do
+    @space = Space.find(params[:id])
+    erb(:view_specific_space)
+  end
+
+  get '/:id/spaces' do
+    @spaces = Space.my_listings(session[:user_id])
+    erb(:all_spaces)
+  end
+
+  get '/sign-out' do
+    session[:user_id] = nil
+    flash[:sign_out] = 'You have successfully signed out!'
+    redirect('/')
+  end
+  
   post '/booking/:id' do
     unless session[:user_id].nil?
       Booking.create(space_id: params['id'], user_id: session[:user_id], date_from: params['date_from'], date_to: params['date_to'])
@@ -74,4 +87,5 @@ class MakersBnb < Sinatra::Base
       redirect("/spaces/#{params['id']}")
     end
   end
+
 end

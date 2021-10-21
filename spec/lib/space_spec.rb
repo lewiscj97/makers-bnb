@@ -17,7 +17,7 @@ describe Space do
   end
 
   describe '#add_space' do
-    context 'user is not logged in' do
+    context 'user is not signed in' do
       it 'should take in a space name, description and rate' do
         Space.add(space_name: 'Foo', description: 'A lovely home', rate: 50)
         response = DatabaseConnection.query('SELECT * FROM spaces;')
@@ -29,7 +29,7 @@ describe Space do
       end
     end
 
-    context 'user is logged in' do
+    context 'user is signed in' do
       it 'should be passed a space name, description, rate and the userid' do
         Space.add(space_name: 'Foo', description: 'A lovely home', rate: 50, user_id: 123)
         response = DatabaseConnection.query('SELECT * FROM spaces;')
@@ -73,6 +73,20 @@ describe Space do
       space = Space.find(space_id)
       expect(space.id).to eq space_id
       expect(space.space_name).to eq 'Foo'
+    end
+  end
+
+  describe '#my_listings(user_id)' do
+    it 'should return a list of spaces belonging to a specific user_id' do
+      # Adding a space with a user_id of 1
+      DatabaseConnection.query("INSERT INTO spaces(space_name, description, rate, user_id) VALUES('foo', 'foobar', '10', '1');")
+
+      spaces = Space.my_listings('1')
+      space = spaces.first
+
+      expect(space.space_name).to eq 'foo'
+      expect(space.description).to eq 'foobar'
+      expect(space.user_id).to eq '1'
     end
   end
 end
