@@ -1,11 +1,13 @@
 feature 'Making a booking' do
+  before(:each) do
+    DatabaseConnection.query(
+      "INSERT INTO spaces(id, space_name, description, rate, user_id) VALUES(1, 'Space', 'A lovely home', 50 , 1);"
+    )
+  end
   scenario 'User makes a booking request for a space' do
     # Create two users
     owner = DatabaseConnection.query("INSERT INTO users(id, username, email, password) VALUES(1, 'Foo', 'foo@bar.com', 'password');")
     customer = DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Bar', 'bar@bar.com', 'password');")
-    
-    # List a space with the user_id set to the owner id
-    DatabaseConnection.query("INSERT INTO spaces(id, space_name, description, rate, user_id) VALUES(1, 'Space', 'A lovely home', 50 , 1);")
     
     # Sign in
     visit('/sign-in')
@@ -29,29 +31,25 @@ feature 'Making a booking' do
   end
 
   scenario 'User cannot request a booking if they are not signed in' do
-    DatabaseConnection.query("INSERT INTO spaces(id, space_name, description, rate, user_id) VALUES(1, 'Space', 'A lovely home', 50 , 1);")
-
     # Makes a request without being signed in
     visit('/spaces/1')
     fill_in 'date_from', with: '2021-10-20'
     fill_in 'date_to', with: '2021-10-23'
     click_button 'Submit Request'
 
-    result = DatabaseConnection.query("SELECT * FROM bookings;")
+    result = DatabaseConnection.query('SELECT * FROM bookings;')
 
     expect(page).to have_content 'You must be signed in to make a booking request'
     expect(result.first).to eq nil
   end
 
   scenario 'User must enter both dates in order to make a requst' do
-    DatabaseConnection.query("INSERT INTO spaces(id, space_name, description, rate, user_id) VALUES(1, 'Space', 'A lovely home', 50 , 1);")
-    
     # Makes a request without being signed in
     visit('/spaces/1')
     fill_in 'date_from', with: '2021-10-20'
     click_button 'Submit Request'
 
-    result = DatabaseConnection.query("SELECT * FROM bookings;")
+    result = DatabaseConnection.query('SELECT * FROM bookings;')
 
     expect(result.first).to eq nil
     expect(page).to have_current_path('/spaces/1')
