@@ -16,12 +16,12 @@ class Space
 
   def self.add(space_name:, description:, rate:, user_id: nil)
     result = DatabaseConnection.query(
-      'INSERT INTO spaces (space_name, description, rate, user_id) VALUES($1, $2, $3, $4) RETURNING space_name, description, rate;',
+      'INSERT INTO spaces (space_name, description, rate, user_id) VALUES($1, $2, $3, $4) RETURNING id, space_name, description, rate, user_id;',
       [space_name, description, rate, user_id]
     )
 
     space = result.first
-    Space.new(id: space['id'], space_name: space['name'], description: space['description'],
+    Space.new(id: space['id'], space_name: space['space_name'], description: space['description'],
               rate: space['rate'], user_id: space['user_id'])
   end
 
