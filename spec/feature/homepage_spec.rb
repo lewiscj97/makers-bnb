@@ -42,4 +42,10 @@ feature 'Homepage: ' do
     click_link('My Listings')
     expect(page).to have_current_path("/#{user_id}/spaces")
   end
+
+  scenario 'username is displayed when signed in' do
+    user_sign_in_sign_out_helper
+
+    expect(page).to have_content('Foo')
+  end
 end
