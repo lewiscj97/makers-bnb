@@ -3,7 +3,7 @@
 feature 'User is signed in, creates a space' do
   scenario 'The user id is added to the spaces table' do
     user_sign_up
-    id = User.get_user_id('test@email.com')
+    id = User.get_user_id('foo@bar.com')
     add_a_space
 
     response = DatabaseConnection.query("SELECT * FROM spaces WHERE space_name='Foo'")

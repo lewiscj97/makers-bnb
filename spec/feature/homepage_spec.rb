@@ -26,7 +26,7 @@ feature 'Homepage: ' do
 
   scenario 'a user can view their listings' do
     user_sign_up
-    user_id = User.get_user_id('test@email.com')
+    user_id = User.get_user_id('foo@bar.com')
 
     visit('/')
     click_link('My Listings')
