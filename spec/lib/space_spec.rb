@@ -75,4 +75,18 @@ describe Space do
       expect(space.space_name).to eq 'Foo'
     end
   end
+
+  describe '#my_listings(user_id)' do
+    it 'should return a list of spaces belonging to a specific user_id' do
+      # Adding a space with a user_id of 1
+      DatabaseConnection.query("INSERT INTO spaces(space_name, description, rate, user_id) VALUES('foo', 'foobar', '10', '1');")
+
+      spaces = Space.my_listings('1')
+      space = spaces.first
+
+      expect(space.space_name).to eq 'foo'
+      expect(space.description).to eq 'foobar'
+      expect(space.user_id).to eq '1'
+    end
+  end
 end
