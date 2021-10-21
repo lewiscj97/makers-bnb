@@ -48,4 +48,12 @@ feature 'Homepage: ' do
 
     expect(page).to have_content('Foo')
   end
+
+  scenario "only show 'add a space' if the user is signed in" do
+    visit('/')
+    expect(page).to_not have_content('Add a space')
+
+    user_sign_in_sign_out_helper
+    expect(page).to have_content('Add a space')
+  end
 end
