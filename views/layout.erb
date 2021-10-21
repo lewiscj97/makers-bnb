@@ -2,12 +2,16 @@
 <head>
   <meta charset="utf-8">
   <title>Makers BnB</title>
+  <link rel="stylesheet" href="<%= '/style.css' %>">
 </head>
+<body>
 <h1>Makers BnB</h1>
+<section class="layout-navbar">
 <a href="/">Home</a>
-<a href="/sign-in">Sign in</a>
 <a href="/spaces">View spaces</a>
-<a href="/my-listings">My Listings</a>
 <a href="/add-space">Add a space</a>
+<a href="/sign-in" class="layout-navbar-right">Sign in</a>
+</section>
 <%= yield %>
+</body>
 </html>
