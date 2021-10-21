@@ -11,7 +11,7 @@ feature 'User is signed in, creates a space' do
 
     expect(space['user_id']).to eq id
 
-    visit("/my-listings/#{id}")
+    visit("/#{id}/spaces")
 
     expect(page).to have_content 'Foo'
     expect(page).to have_content 'A lovely home'

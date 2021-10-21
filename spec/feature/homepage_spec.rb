@@ -40,6 +40,6 @@ feature 'Homepage: ' do
 
     visit('/')
     click_link('My Listings')
-    expect(page).to have_current_path("/my-listings/#{user_id}")
+    expect(page).to have_current_path("/#{user_id}/spaces")
   end
 end

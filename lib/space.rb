@@ -42,8 +42,9 @@ class Space
 
   def self.my_listings(user_id)
     result = DatabaseConnection.query('SELECT * FROM spaces WHERE user_id=$1;', [user_id])
-    space = result.first
-    Space.new(id: space['id'], space_name: space['space_name'],
-              description: space['description'], rate: space['rate'], user_id: space['user_id'])
+    result.map do |value|
+      Space.new(id: value['id'], space_name: value['space_name'],
+                description: value['description'], rate: value['rate'], user_id: value['user_id'])
+    end
   end
 end
