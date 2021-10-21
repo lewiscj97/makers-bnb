@@ -31,6 +31,10 @@ feature 'User is signed in, creates a space' do
     fill_in 'rate', with: 50
     click_button 'Add Space'
 
+    # Redirect and see a flash message
+    expect(page).to have_content('You have successfully added a space!')
+    expect(page).to have_current_path("/spaces/#{space_id}")
+
     # Get the space details for checking
     response = DatabaseConnection.query("SELECT * FROM spaces WHERE space_name='Foo'")
     space = response.first
