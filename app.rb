@@ -66,9 +66,9 @@ class MakersBnb < Sinatra::Base
     erb(:view_specific_space)
   end
 
-  get '/my_listings/:id' do
-    @space = Space.my_listings(session[:id])
-    erb(:view_specific_space)
+  get '/my_listings/:user_id' do
+    @space = Space.my_listings(session[:user_id])
+    erb(:all_spaces)
   end
 
   post '/booking/:id' do
