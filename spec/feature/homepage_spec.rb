@@ -6,7 +6,6 @@ feature 'Homepage: ' do
     expect(page).to have_link('Home')
     expect(page).to have_link('Sign in')
     expect(page).to have_link('View spaces')
-    expect(page).to have_link('My Listings')
   end
 
   scenario 'a user can view the homepage' do
@@ -51,5 +50,17 @@ feature 'Homepage: ' do
 
     click_link('Add a space')
     expect(page).to have_current_path('/add-space')
+  end
+
+  scenario "only show 'my listings' if the user is signed in" do
+    visit('/')
+    expect(page).to_not have_content('My Listings')
+
+    user_sign_in_sign_out_helper
+    id = User.get_user_id('foo@bar.com')
+    expect(page).to have_content('My Listings')
+
+    click_link('My Listings')
+    expect(page).to have_current_path("/#{id}/spaces")
   end
 end
