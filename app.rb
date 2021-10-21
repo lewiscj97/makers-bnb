@@ -71,7 +71,7 @@ class MakersBnb < Sinatra::Base
 
   get '/sign-out' do
     session[:user_id] = nil
-    flash[:sign_out] = 'You have signed out'
+    flash[:sign_out] = 'You have successfully signed out!'
     redirect('/')
   end
   
