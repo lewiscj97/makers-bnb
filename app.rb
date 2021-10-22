@@ -24,7 +24,7 @@ class MakersBnb < Sinatra::Base
     session[:user_id] = user.id
     flash[:sign_up_success] = 'Congratulations, you have successfully signed up to Makers BnB! You are now signed in!'
     session[:username] = User.get_username(params['email'])
-    redirect ('/spaces')
+    redirect('/spaces')
   end
 
   get '/add-space' do

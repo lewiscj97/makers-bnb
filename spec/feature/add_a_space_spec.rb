@@ -9,7 +9,7 @@ feature 'User is signed in, creates a space' do
     # Sign in
     user_sign_in
 
-    expect(page).to have_current_path('/')
+    expect(page).to have_current_path('/spaces')
 
     # Add a new space
     add_a_space
