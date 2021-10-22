@@ -7,7 +7,6 @@
     <h3>Pending</h3>
     <% @unconfirmed_bookings.each do |request| %>
       <br>
-      <body>
       <div class="card">
         <section id=<%= request.id %>>
           <img src="https://cdn-icons-png.flaticon.com/512/2344/2344031.png" alt="Avatar" style="width: 100%">
@@ -27,7 +26,6 @@
           </div>
         </section>
       </div>
-      </body>
     <% end %>
   <% end %>
 
@@ -36,7 +34,6 @@
     <h3>Confirmed</h3>
     <% @confirmed_bookings.each do |request| %>
       <br>
-      <body>
       <div class="card">
         <section id=<%= request.id %>>
           <img src="https://cdn-icons-png.flaticon.com/512/2344/2344031.png" alt="Avatar" style="width: 100%">
@@ -50,7 +47,6 @@
           </div>
         </section>
       </div>
-      </body>
 
     <% end %>
   <% end %>
