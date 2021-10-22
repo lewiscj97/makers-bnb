@@ -1,7 +1,22 @@
 <h2>Add a Space</h2>
 <form method="post" action="/add-space">
-  <%= "Space Name: " %><input type="text" name="space_name" placeholder="Space Name"/><br><br>
-  <%= "Description: " %><textarea name="description" placeholder="Description" maxlength="500"></textarea><br><br>
-  <%= "Nightly Rate: " %><input type="text" name="rate" placeholder="Nightly Rate"/><br><br>
+  <label for='space_name'>
+    Enter a name for your space
+  </label>
+  <br>
+  <input type="text" required name="space_name" oninvalid="this.setCustomValidity('Enter a name here')"
+  oninput="this.setCustomValidity('')"/><br><br>
+  <label for='space_name'>
+    Write a description
+  </label>
+  <br>
+  <textarea name="description" required maxlength="500" oninvalid="this.setCustomValidity('Enter a description here')"
+  oninput="this.setCustomValidity('')"></textarea><br><br>
+  <label for='space_name'>
+    Enter the nightly rate
+  </label>
+  <br>
+  <input type="number" name="rate" required oninvalid="this.setCustomValidity('Enter a nightly rate')"
+  oninput="this.setCustomValidity('')"><br><br>
   <input type="submit" value="Add Space"/>
 </form>

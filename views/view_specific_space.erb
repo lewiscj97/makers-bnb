@@ -8,7 +8,23 @@
 <%= flash[:user_not_signed_in] %>
 <h2>Book Now!</h2>
 <form method="post" action="/booking/<%=@space.id%>">
-  <input name="date_from" type="date" required>
-  <input name="date_to" type="date" required>
+  <label for='date_from'>
+    Check in
+  </label>
+  <br>
+  <br>
+  <input name="date_from" type="date" required oninvalid="this.setCustomValidity('Choose a check in date')"
+  oninput="this.setCustomValidity('')">
+  <br>
+  <br>
+  <label for='date_from'>
+    Check out
+  </label>
+  <br>
+  <br>
+  <input name="date_to" type="date" required oninvalid="this.setCustomValidity('Choose a check out date')"
+  oninput="this.setCustomValidity('')">
+  <br>
+  <br>
   <input type="submit" value="Submit Request">
 </form>
