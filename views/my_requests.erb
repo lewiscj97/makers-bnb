@@ -1,9 +1,18 @@
-<% @bookings.each do | request |%>
-  <section id=<%=request.id%>>
-    <p><%= request.date_from %></p> 
-    <p><%= request.date_to %></p> 
-    <% if %>
-    <p><%= request.confirmed %></p> 
-    <br>
-  </section>
+<h2>Requests</h2>
+
+<% if @bookings.empty? %>
+  <h3>There are no current requests</h3>
+<% else %>
+  <% @bookings.each do | request |%>
+    <section id=<%=request.id%>>
+      <p><%= request.space_name %></p>
+      <p><%= request.description %></p>
+      <p><%="£#{request.rate}ppn" %></p>
+      <p>Check in: <%= request.date_from %></p>
+      <p>Check out: <%= request.date_to %></p>
+      <button>Approve</button>
+      <button>Reject</button>
+      <br>
+    </section>
+  <% end %>
 <% end %>

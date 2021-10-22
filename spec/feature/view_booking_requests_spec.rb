@@ -11,7 +11,7 @@ feature 'View my booking requests' do
 
       expect(page).to have_content('Space')
       expect(page).to have_content('A lovely home')
-      expect(page).to have_content('£50')
+      expect(page).to have_content('£50ppn')
       expect(page).to have_content('2021-10-20')
       expect(page).to have_content('2021-10-25')
     end

@@ -6,6 +6,7 @@ require './lib/database_connection_setup'
 require './lib/user'
 require './lib/space'
 require './lib/booking'
+require './lib/booking_space'
 
 class MakersBnb < Sinatra::Base
   enable :sessions
@@ -89,7 +90,7 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/:user_id/requests' do
-    @bookings = Booking.find_by_id(session[:user_id])
+    @bookings = BookingSpace.get_by_id(session[:user_id])
     erb(:my_requests)
   end
 end
