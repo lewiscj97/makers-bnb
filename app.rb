@@ -91,6 +91,8 @@ class MakersBnb < Sinatra::Base
 
   get '/:user_id/requests' do
     @bookings = BookingSpace.get_by_id(session[:user_id])
+    @unconfirmed_bookings = @bookings.select { |request| request.confirmed == '0'}
+    @confirmed_bookings = @bookings.select { |request| request.confirmed == '1'}
     erb(:my_requests)
   end
 end
