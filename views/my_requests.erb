@@ -5,34 +5,49 @@
 <% else %>
   <% if !@unconfirmed_bookings.empty? %>
     <h3>Pending</h3>
-    <% @unconfirmed_bookings.each do | request |%>
-      <section id=<%=request.id%>>
-        <p><%= request.space_name %></p>
-        <p><%= request.description %></p>
-        <p><%="£#{request.rate}ppn" %></p>
-        <p>Check in: <%= request.date_from %></p>
-        <p>Check out: <%= request.date_to %></p>
-        <form method="post" action="/<%=request.id%>/confirm">
-          <input type="submit" value="Approve">
-        </form>
-        <form method="post" action="/<%=request.id%>/deny">
-          <input type="submit" value="Reject">
-        </form>
-        <br>
-      </section>
-      <% end %>
+    <% @unconfirmed_bookings.each do |request| %>
+      <br>
+      <div class="card">
+        <section id=<%= request.id %>>
+          <img src="https://cdn-icons-png.flaticon.com/512/2344/2344031.png" alt="Avatar" style="width: 100%">
+          <div class="container">
+            <h4><a class="space_name_link"><%= request.space_name %></a></h4>
+            <p><%= request.description %></p>
+            <p><%= "£#{request.rate}ppn" %></p>
+            <p>Check in: <%= request.date_from %></p>
+            <p>Check out: <%= request.date_to %></p>
+            <form method="post" action="/<%= request.id %>/confirm">
+              <input type="submit" value="Approve">
+            </form>
+            <form method="post" action="/<%= request.id %>/deny">
+              <input type="submit" value="Reject">
+            </form>
+            <br>
+          </div>
+        </section>
+      </div>
     <% end %>
+  <% end %>
+
+
   <% if !@confirmed_bookings.empty? %>
     <h3>Confirmed</h3>
-    <% @confirmed_bookings.each do | request |%>
-      <section id=<%=request.id%>>
-        <p><%= request.space_name %></p>
-        <p><%= request.description %></p>
-        <p><%="£#{request.rate}ppn" %></p>
-        <p>Check in: <%= request.date_from %></p>
-        <p>Check out: <%= request.date_to %></p>
-        <br>
-      </section>
+    <% @confirmed_bookings.each do |request| %>
+      <br>
+      <div class="card">
+        <section id=<%= request.id %>>
+          <img src="https://cdn-icons-png.flaticon.com/512/2344/2344031.png" alt="Avatar" style="width: 100%">
+          <div class="container">
+            <h4><a class="space_name_link"><%= request.space_name %></a></h4>
+            <p><%= request.description %></p>
+            <p><%= "£#{request.rate}ppn" %></p>
+            <p>Check in: <%= request.date_from %></p>
+            <p>Check out: <%= request.date_to %></p>
+            <br>
+          </div>
+        </section>
+      </div>
+
     <% end %>
-  <%end%>
+  <% end %>
 <% end %>

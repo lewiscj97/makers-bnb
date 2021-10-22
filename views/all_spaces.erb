@@ -6,17 +6,22 @@
 
 
 <% if @spaces.empty? %>
-<h3>Sorry!</h3>
-<h4>There are no available spaces</h4>
+  <h3>Sorry!</h3>
+  <h4>There are no available spaces</h4>
 <% else %>
-<% @spaces.each do | space |%>
-  <section id=<%=space.id%>>
-    <h3> 
-      <a href="/spaces/<%= space.id %>">  <%= space.space_name %> </a>
-    </h3>
-    <p>   <%= space.description %></p> 
-    <p>£<%= space.rate %> per night</p> 
+  <% @spaces.each do |space| %>
+
     <br>
-  </section>
-<% end %>
+    <div class="card">
+      <section id=<%= space.id %>>
+        <img src="https://cdn-icons-png.flaticon.com/512/2344/2344031.png" alt="Avatar" style="width: 100%">
+        <div class="container">
+          <h4><a class="space_name_link" href="/spaces/<%= space.id %>"> <%= space.space_name %></a></h4>
+          <p><%= space.description %></p>
+          <p>£<%= space.rate %> per night</p>
+        </div>
+      </section>
+    </div>
+
+  <% end %>
 <% end %>

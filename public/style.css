@@ -1,27 +1,69 @@
 body {
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.43;
     color: #484848;
     background-color: #fff;
     margin: 10px;
 }
 
-a {
-    text-decoration: none;
-    /* padding: 1em; */
-}
-
-a:hover{
-    background-color: #ebebeb;
-}
-
 .layout-navbar {
     display: flex;
     flex-direction: row;
-    justify-items: flex-end;
 }
 
-.layout-navbar-right{
+.layout-navbar-right {
+    display: flex;
+    justify-content: space-around;
+    margin-left: 0px;
+}
 
+.username {
+    display: flex;
+    justify-content: space-around;
+    margin-left: auto;
+}
+
+a {
+    text-decoration: none;
+    padding: 1em;
+}
+
+a:hover {
+    background-color: #ebebeb;
+}
+
+.space_name_link {
+    text-decoration: none;
+    padding: 1em;
+    color: blue;
+}
+
+.space_name_link:hover {
+    background-color: lightgrey;
+}
+
+
+.card {
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 13%;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    background-color: #ebebeb;
+}
+
+img {
+    border-radius: 5px 5px 0 0;
+}
+
+.container {
+    padding: 2px 16px;
 }
