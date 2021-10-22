@@ -36,3 +36,10 @@ def user_sign_in_sign_out_helper
   DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Foo', 'foo@bar.com', 'password');")
   user_sign_in
 end
+
+def make_a_booking
+  owner = DatabaseConnection.query("INSERT INTO users(id, username, email, password) VALUES(1, 'Foo', 'foo@bar.com', 'password');")
+  customer = DatabaseConnection.query("INSERT INTO users(id, username, email, password) VALUES(2, 'Bar', 'bar@bar.com', 'password');")
+  DatabaseConnection.query("INSERT INTO spaces(id, space_name, description, rate, user_id) VALUES(1, 'Space', 'A lovely home', 50 , 1);")
+  DatabaseConnection.query("INSERT INTO bookings(space_id, user_id, date_from, date_to, confirmed) VALUES(1, 2, '2021-10-20', '2021-10-25', '0');")
+end
