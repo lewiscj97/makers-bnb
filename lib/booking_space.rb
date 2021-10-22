@@ -1,7 +1,7 @@
 class BookingSpace
   attr_reader :id, :space_id, :user_id, :date_from, :date_to, :confirmed
   
-  def initialize(id:, date_from:, date_to:, confirmed: 0, space_id:, description:, rate:, customer_id:)
+  def initialize(id:, date_from:, date_to:, confirmed: 0, space_name:, description:, rate:, customer_id:)
     @id = id
     @date_from = date_from
     @date_to = date_to
@@ -19,10 +19,9 @@ class BookingSpace
     JOIN bookings ON spaces.user_id = users.id
     WHERE users.id = $1
     ;', [customer_id])
-    result.map do |value|
+    results.map do |value|
       BookingSpace.new(id: value['id'], date_from: value['date_from'], date_to: value['date_to'], confirmed: value['confirmed'],
                     space_name: value['space_name'], description: value['description'], rate: value['rate'], customer_id: value['customer_id'])
     end
   end
-
 end

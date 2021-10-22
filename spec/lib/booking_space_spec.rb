@@ -1,4 +1,6 @@
-describe '#booingSpace' do
+require 'booking_space'
+
+describe BookingSpace do
   describe '#get_by_id' do
     it 'can join bookings and spaces table and return values' do
       owner = DatabaseConnection.query("INSERT INTO users(id, username, email, password) VALUES(1, 'Foo', 'foo@bar.com', 'password');")
@@ -12,7 +14,11 @@ describe '#booingSpace' do
         JOIN bookings ON spaces.user_id = users.id
         WHERE users.id = 1'
       )
+
       result = response.first
+
+      bookings = BookingSpace.get_by_id(1)
+      p bookings
 
       expect(result['date_from']).to eq '2021-10-20'
       expect(result['date_to']).to eq '2021-10-25'
