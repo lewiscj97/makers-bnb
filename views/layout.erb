@@ -5,17 +5,16 @@
   <link rel="stylesheet" href="<%= '/style.css' %>">
 </head>
 <body>
-<h1>Makers BnB</h1>
+<h1> <a href="/spaces">Makers BnB</a></h1>
 <section class="layout-navbar">
-  <a class="layout" href="/">Home</a>
-  <a class="layout" href="/spaces">View spaces</a>
   <% if session[:user_id].nil? %>
-    <a href="/sign-in" class="layout-navbar-right">Sign in</a>
+  <a href="/sign-in" class="layout-navbar-right">Sign in</a>
   <% else %>
-    <a class="layout" href="/<%= "#{session[:user_id]}/spaces" %>">My Listings</a>
-    <a class="layout" href="/add-space">Add a space</a>
-    <p class="layout-navbar-right"><%= session[:username] %></p>
-    <a class="layout" href="/sign-out" class="layout-navbar-right">Sign out</a>
+  <a href="/add-space" class="layout-navbar-right">Add a space</a>
+  <a href="/<%= "#{session[:user_id]}/spaces" %>" class="layout-navbar-right">My Listings</a>
+  <a href="/<%= "#{session[:user_id]}/requests" %>" class="layout-navbar-right">My Requests</a>
+  <p class="layout-navbar-right"><%= session[:username] %></p>
+  <a href="/sign-out" class="layout-navbar-right">Sign out</a>
   <% end %>
 </section>
 <%= yield %>

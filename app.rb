@@ -6,6 +6,7 @@ require './lib/database_connection_setup'
 require './lib/user'
 require './lib/space'
 require './lib/booking'
+require './lib/booking_space'
 
 class MakersBnb < Sinatra::Base
   enable :sessions
@@ -24,7 +25,7 @@ class MakersBnb < Sinatra::Base
     session[:user_id] = user.id
     flash[:sign_up_success] = 'Congratulations, you have successfully signed up to Makers BnB! You are now signed in!'
     session[:username] = User.get_username(params['email'])
-    redirect '/'
+    redirect('/spaces')
   end
 
   get '/add-space' do
@@ -49,7 +50,7 @@ class MakersBnb < Sinatra::Base
       session[:user_id] = User.get_user_id(email)
       session[:username] = User.get_username(email)
       flash[:sign_in_success] = 'You have successfully signed in!'
-      redirect('/')
+      redirect('/spaces')
     else
       flash[:incorrect_details] = 'Incorrect sign in details entered'
       redirect('/sign-in')
@@ -74,18 +75,22 @@ class MakersBnb < Sinatra::Base
   get '/sign-out' do
     session[:user_id] = nil
     flash[:sign_out] = 'You have successfully signed out!'
-    redirect('/')
+    redirect('/spaces')
   end
   
   post '/booking/:id' do
     unless session[:user_id].nil?
       Booking.create(space_id: params['id'], user_id: session[:user_id], date_from: params['date_from'], date_to: params['date_to'])
       flash[:booking_request] = 'Booking request submitted'
-      redirect('/')
+      redirect('/spaces')
     else
       flash[:user_not_signed_in] = 'You must be signed in to make a booking request'
       redirect("/spaces/#{params['id']}")
     end
   end
 
+  get '/:user_id/requests' do
+    @bookings = BookingSpace.get_by_id(session[:user_id])
+    erb(:my_requests)
+  end
 end

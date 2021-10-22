@@ -29,11 +29,11 @@ body {
 .layout-navbar {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    justify-items: flex-end;
 }
 
 .layout-navbar-right{
-    margin-left: auto;
+
 }
 
 .card {
