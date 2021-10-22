@@ -6,16 +6,16 @@
 
     <br>
     <body>
-    <section id=<%= space.id %>>
       <div class="card">
+      <section id=<%= space.id %>>
         <img src="https://cdn-icons-png.flaticon.com/512/2344/2344031.png" alt="Avatar" style="width:100%">
         <div class="container">
           <h4><a class="space_name_link" href="/spaces/<%= space.id %>"> <%= space.space_name %></a></h4>
           <p><%= space.description %></p>
           <p>£<%= space.rate %> per night</p>
         </div>
+      </section>
       </div>
-    </section>
     </body>
 
   <% end %>
