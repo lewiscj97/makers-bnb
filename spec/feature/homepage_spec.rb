@@ -2,31 +2,32 @@
 
 feature 'Homepage: ' do
   scenario 'has a navigation bar' do
-    visit('/')
+    visit('/spaces')
     expect(page).to have_link('Sign in')
   end
 
   scenario 'a user can view the homepage' do
-    visit('/')
+    visit('/spaces')
     click_link('Makers BnB')
     expect(page).to have_current_path('/spaces')
   end
 
   scenario 'a user can sign in' do
-    visit('/')
+    visit('/spaces')
     click_link('Sign in')
     expect(page).to have_current_path('/sign-in')
   end
 
-  scenario 'a user can add a space' do
+  scenario 'a user can view spaces' do
     user_sign_up
-    click_link('Add a space')
-    expect(page).to have_current_path('/add-space')
+    expect(page).to have_current_path('/spaces')
   end
 
   scenario 'a user can view their listings' do
     user_sign_up
     user_id = User.get_user_id('foo@bar.com')
+
+    visit('/spaces')
     click_link('My Listings')
     expect(page).to have_current_path("/#{user_id}/spaces")
   end
@@ -38,7 +39,7 @@ feature 'Homepage: ' do
   end
 
   scenario "only show 'add a space' if the user is signed in" do
-    visit('/')
+    visit('/spaces')
     expect(page).to_not have_content('Add a space')
 
     user_sign_in_sign_out_helper
@@ -49,7 +50,7 @@ feature 'Homepage: ' do
   end
 
   scenario "only show 'my listings' if the user is signed in" do
-    visit('/')
+    visit('/spaces')
     expect(page).to_not have_content('My Listings')
 
     user_sign_in_sign_out_helper
