@@ -1,19 +1,31 @@
 body {
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.43;
     color: #484848;
     background-color: #fff;
     margin: 10px;
 }
 
-a {
+.layout {
     text-decoration: none;
     padding: 1em;
 }
 
-a:hover{
+.layout:hover{
     background-color: #ebebeb;
+}
+
+.space_name_link {
+    text-decoration: none;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    color: blue;
+}
+
+.space_name_link:hover {
+    border: 1px;
+    border-color: white;
 }
 
 .layout-navbar {
@@ -24,4 +36,27 @@ a:hover{
 
 .layout-navbar-right{
     margin-left: auto;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 13%;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    background-color: slategrey;
+    color: whitesmoke;
+}
+
+img {
+    border-radius: 5px 5px 0 0;
+}
+
+.container {
+    padding: 2px 16px;
 }

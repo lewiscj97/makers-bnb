@@ -7,15 +7,15 @@
 <body>
 <h1>Makers BnB</h1>
 <section class="layout-navbar">
-  <a href="/">Home</a>
-  <a href="/spaces">View spaces</a>
+  <a class="layout" href="/">Home</a>
+  <a class="layout" href="/spaces">View spaces</a>
   <% if session[:user_id].nil? %>
     <a href="/sign-in" class="layout-navbar-right">Sign in</a>
   <% else %>
-    <a href="/<%= "#{session[:user_id]}/spaces" %>">My Listings</a>
-    <a href="/add-space">Add a space</a>
+    <a class="layout" href="/<%= "#{session[:user_id]}/spaces" %>">My Listings</a>
+    <a class="layout" href="/add-space">Add a space</a>
     <p class="layout-navbar-right"><%= session[:username] %></p>
-    <a href="/sign-out" class="layout-navbar-right">Sign out</a>
+    <a class="layout" href="/sign-out" class="layout-navbar-right">Sign out</a>
   <% end %>
 </section>
 <%= yield %>
