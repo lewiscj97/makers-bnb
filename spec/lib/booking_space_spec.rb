@@ -6,10 +6,10 @@ describe BookingSpace do
       make_a_booking
 
       response = DatabaseConnection.query(
-        'SELECT bookings.id, date_from, date_to, confirmed, space_name, description, rate, bookings.user_id FROM users
-        JOIN spaces ON users.id=spaces.user_id
-        JOIN bookings ON spaces.user_id = users.id
-        WHERE users.id = 1'
+        'SELECT bookings.id, date_from, date_to, confirmed, space_name, description, rate, bookings.user_id FROM bookings
+        JOIN spaces ON bookings.space_id=spaces.id
+        JOIN users on spaces.user_id = users.id
+        WHERE users.id = 1;'
       )
 
       result = response.first
@@ -34,10 +34,10 @@ describe BookingSpace do
       BookingSpace.approve_request(booking_id)
 
       response = DatabaseConnection.query(
-        'SELECT bookings.id, date_from, date_to, confirmed, space_name, description, rate, bookings.user_id FROM users
-        JOIN spaces ON users.id=spaces.user_id
-        JOIN bookings ON spaces.user_id = users.id
-        WHERE users.id = 1'
+        'SELECT bookings.id, date_from, date_to, confirmed, space_name, description, rate, bookings.user_id FROM bookings
+        JOIN spaces ON bookings.space_id=spaces.id
+        JOIN users on spaces.user_id = users.id
+        WHERE users.id = 1;'
       )
       result = response.first
       
