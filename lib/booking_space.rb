@@ -30,4 +30,8 @@ class BookingSpace
       [booking_id]
     )
   end
+
+  def self.reject_request(booking_id)
+    DatabaseConnection.query('DELETE FROM bookings WHERE id=$1;', [booking_id])
+  end
 end
