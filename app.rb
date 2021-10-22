@@ -95,4 +95,9 @@ class MakersBnb < Sinatra::Base
     @confirmed_bookings = @bookings.select { |request| request.confirmed == '1'}
     erb(:my_requests)
   end
+
+  post '/:booking_id/confirm' do
+    BookingSpace.approve_request(params[:booking_id])
+    redirect("/#{session[:user_id]}/requests")
+  end
 end

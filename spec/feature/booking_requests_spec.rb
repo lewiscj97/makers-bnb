@@ -24,7 +24,7 @@ feature 'Approve a booking request' do
       click_link('My Requests')
       click_button('Approve')
 
-      expect(page).to have_content("Confirmed bookings\nSpace\nA lovely home\n£50ppn")
+      expect(page).to have_content("Confirmed\nSpace\nA lovely home\n£50ppn")
     end
   end
 end

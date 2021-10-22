@@ -2,30 +2,35 @@
 
 <% if @bookings.empty? %>
   <h3>There are no current requests</h3>
-<% elsif !@unconfirmed_bookings.empty? %>
-  <h3>Pending</h3>
-  <% @unconfirmed_bookings.each do | request |%>
-    <section id=<%=request.id%>>
-      <p><%= request.space_name %></p>
-      <p><%= request.description %></p>
-      <p><%="£#{request.rate}ppn" %></p>
-      <p>Check in: <%= request.date_from %></p>
-      <p>Check out: <%= request.date_to %></p>
-      <button>Approve</button>
-      <button>Reject</button>
-      <br>
-    </section>
-  <% end %>
-<% elsif !@confirmed_bookings.empty?%>
-  <h3>Confirmed</h3>
-  <% @confirmed_bookings.each do | request |%>
-    <section id=<%=request.id%>>
-      <p><%= request.space_name %></p>
-      <p><%= request.description %></p>
-      <p><%="£#{request.rate}ppn" %></p>
-      <p>Check in: <%= request.date_from %></p>
-      <p>Check out: <%= request.date_to %></p>
-      <br>
-    </section>
-  <% end %>
+<% else %>
+  <% if !@unconfirmed_bookings.empty? %>
+    <h3>Pending</h3>
+    <% @unconfirmed_bookings.each do | request |%>
+      <section id=<%=request.id%>>
+        <p><%= request.space_name %></p>
+        <p><%= request.description %></p>
+        <p><%="£#{request.rate}ppn" %></p>
+        <p>Check in: <%= request.date_from %></p>
+        <p>Check out: <%= request.date_to %></p>
+        <form method="post" action="/<%=request.id%>/confirm">
+          <input type="submit" value="Approve">
+        </form>
+        <button>Reject</button>
+        <br>
+      </section>
+      <% end %>
+    <% end %>
+  <% if !@confirmed_bookings.empty? %>
+    <h3>Confirmed</h3>
+    <% @confirmed_bookings.each do | request |%>
+      <section id=<%=request.id%>>
+        <p><%= request.space_name %></p>
+        <p><%= request.description %></p>
+        <p><%="£#{request.rate}ppn" %></p>
+        <p>Check in: <%= request.date_from %></p>
+        <p>Check out: <%= request.date_to %></p>
+        <br>
+      </section>
+    <% end %>
+  <%end%>
 <% end %>
