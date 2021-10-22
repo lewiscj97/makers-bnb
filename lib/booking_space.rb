@@ -23,4 +23,15 @@ class BookingSpace
                     space_name: booking['space_name'], description: booking['description'], rate: booking['rate'], customer_id: booking['user_id'])
     end
   end
+
+  def self.approve_request(booking_id)
+    DatabaseConnection.query(
+      "UPDATE bookings SET confirmed='1' WHERE id=$1;",
+      [booking_id]
+    )
+  end
+
+  def self.reject_request(booking_id)
+    DatabaseConnection.query('DELETE FROM bookings WHERE id=$1;', [booking_id])
+  end
 end
