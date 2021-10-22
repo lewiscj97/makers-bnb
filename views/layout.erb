@@ -12,6 +12,7 @@
   <% else %>
   <a href="/add-space" class="layout-navbar-right">Add a space</a>
   <a href="/<%= "#{session[:user_id]}/spaces" %>" class="layout-navbar-right">My Listings</a>
+  <a href="/<%= "#{session[:user_id]}/requests" %>" class="layout-navbar-right">My Requests</a>
   <p class="layout-navbar-right"><%= session[:username] %></p>
   <a href="/sign-out" class="layout-navbar-right">Sign out</a>
   <% end %>
