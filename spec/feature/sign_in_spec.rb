@@ -6,7 +6,7 @@ feature 'Sign in to your user account: ' do
 
     user_sign_in
 
-    expect(page).to have_current_path('/')
+    expect(page).to have_current_path('/spaces')
   end
 
   scenario 'User is not able to sign in if their password is incorrect' do
@@ -53,6 +53,6 @@ feature 'Sign in to your user account: ' do
     user_sign_in
 
     expect(page).to have_content('You have successfully signed in!')
-    expect(page).to have_current_path('/')
+    expect(page).to have_current_path('/spaces')
   end
 end

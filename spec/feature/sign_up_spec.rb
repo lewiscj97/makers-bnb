@@ -23,6 +23,6 @@ feature 'Sign up: ' do
     fill_in 'password', with: 'password'
     click_button 'Sign up'
     expect(page).to have_content('Congratulations, you have successfully signed up to Makers BnB! You are now signed in!')
-    expect(page).to have_current_path('/')
+    expect(page).to have_current_path('/spaces')
   end
 end
