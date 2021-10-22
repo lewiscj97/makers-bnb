@@ -4,9 +4,9 @@ describe BookingSpace do
   describe '#get_by_id' do
     it 'can join bookings and spaces table and return values' do
       owner = DatabaseConnection.query("INSERT INTO users(id, username, email, password) VALUES(1, 'Foo', 'foo@bar.com', 'password');")
-      customer = DatabaseConnection.query("INSERT INTO users(username, email, password) VALUES('Bar', 'bar@bar.com', 'password');")
+      customer = DatabaseConnection.query("INSERT INTO users(id, username, email, password) VALUES(2, 'Bar', 'bar@bar.com', 'password');")
       DatabaseConnection.query("INSERT INTO spaces(id, space_name, description, rate, user_id) VALUES(1, 'Space', 'A lovely home', 50 , 1);")
-      DatabaseConnection.query("INSERT INTO bookings(space_id, user_id, date_from, date_to, confirmed) VALUES(1, 1, '2021-10-20', '2021-10-25', '0');")
+      DatabaseConnection.query("INSERT INTO bookings(space_id, user_id, date_from, date_to, confirmed) VALUES(1, 2, '2021-10-20', '2021-10-25', '0');")
 
       response = DatabaseConnection.query(
         'SELECT bookings.id, date_from, date_to, confirmed, space_name, description, rate, bookings.user_id FROM users
@@ -16,17 +16,15 @@ describe BookingSpace do
       )
 
       result = response.first
+      booking = BookingSpace.get_by_id(1).first
 
-      bookings = BookingSpace.get_by_id(1)
-      p bookings
-
-      expect(result['date_from']).to eq '2021-10-20'
-      expect(result['date_to']).to eq '2021-10-25'
-      expect(result['confirmed']).to eq '0'
-      expect(result['space_name']).to eq 'Space'
-      expect(result['description']).to eq 'A lovely home'
-      expect(result['rate']).to eq '50'
-      expect(result['user_id']).to eq '1'
+      expect(booking.date_from).to eq result['date_from']
+      expect(booking.date_to).to eq result['date_to']
+      expect(booking.confirmed).to eq result['confirmed']
+      expect(booking.space_name).to eq result['space_name']
+      expect(booking.description).to eq result['description']
+      expect(booking.rate).to eq result['rate']
+      expect(booking.customer_id).to eq result['user_id']
     end
   end
 end

@@ -1,5 +1,5 @@
 class BookingSpace
-  attr_reader :id, :space_id, :user_id, :date_from, :date_to, :confirmed
+  attr_reader :id, :space_name, :date_from, :date_to, :confirmed, :description, :rate, :customer_id
   
   def initialize(id:, date_from:, date_to:, confirmed: 0, space_name:, description:, rate:, customer_id:)
     @id = id
@@ -13,15 +13,14 @@ class BookingSpace
   end
 
   def self.get_by_id(customer_id)
-    results = DatabaseConnection.query('
-    SELECT bookings.id, date_from, date_to, confirmed, space_name, description, rate, bookings.user_id FROM users
-    JOIN spaces ON users.id=spaces.user_id
-    JOIN bookings ON spaces.user_id = users.id
-    WHERE users.id = $1
-    ;', [customer_id])
-    results.map do |value|
-      BookingSpace.new(id: value['id'], date_from: value['date_from'], date_to: value['date_to'], confirmed: value['confirmed'],
-                    space_name: value['space_name'], description: value['description'], rate: value['rate'], customer_id: value['customer_id'])
+    result = DatabaseConnection.query(
+      'SELECT bookings.id, date_from, date_to, confirmed, space_name, description, rate, bookings.user_id FROM users
+      JOIN spaces ON users.id=spaces.user_id
+      JOIN bookings ON spaces.user_id = users.id
+      WHERE users.id = $1;', [customer_id])
+    result.map do |booking|
+      BookingSpace.new(id: booking['id'], date_from: booking['date_from'], date_to: booking['date_to'], confirmed: booking['confirmed'],
+                    space_name: booking['space_name'], description: booking['description'], rate: booking['rate'], customer_id: booking['user_id'])
     end
   end
 end
