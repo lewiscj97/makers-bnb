@@ -20,6 +20,9 @@ class User
   end
 
   def self.create(username, email, password)
+    p username
+    p email
+    p password
     result = DatabaseConnection.query(
       'INSERT INTO users (username, email, password) VALUES($1, $2, $3) RETURNING id, username, email, password;', [username,
                                                                                                                     email, password]
