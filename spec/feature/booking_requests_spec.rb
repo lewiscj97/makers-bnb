@@ -28,3 +28,17 @@ feature 'Approve a booking request' do
     end
   end
 end
+
+feature 'Reject booking request' do
+  context 'a booking request is rejected' do
+    scenario 'owner rejects' do
+      make_a_booking
+      user_sign_in
+
+      click_link('My Requests')
+      click_button('Reject')
+
+      expect(page).to have_content("There are no current requests")
+    end
+  end
+end

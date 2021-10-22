@@ -15,7 +15,9 @@
         <form method="post" action="/<%=request.id%>/confirm">
           <input type="submit" value="Approve">
         </form>
-        <button>Reject</button>
+        <form method="post" action="/<%=request.id%>/deny">
+          <input type="submit" value="Reject">
+        </form>
         <br>
       </section>
       <% end %>
