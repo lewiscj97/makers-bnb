@@ -100,4 +100,9 @@ class MakersBnb < Sinatra::Base
     BookingSpace.approve_request(params[:booking_id])
     redirect("/#{session[:user_id]}/requests")
   end
+
+  post '/:booking_id/deny' do
+    BookingSpace.reject_request(params[:booking_id])
+    redirect("/#{session[:user_id]}/requests")
+  end
 end

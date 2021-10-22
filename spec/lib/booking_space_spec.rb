@@ -44,4 +44,22 @@ describe BookingSpace do
       expect(result['confirmed']).to eq '1'
     end
   end
+
+  describe '#reject_request' do 
+    it ' rejects a booking request' do
+      make_a_booking
+      booking = BookingSpace.get_by_id(1).first
+      booking_id = booking.id
+
+      BookingSpace.reject_request(booking_id)
+
+      response = DatabaseConnection.query(
+        "SELECT * FROM bookings
+        WHERE id = #{booking_id}"
+      )
+      result = response.first
+
+      expect(result.nil?).to eq true
+    end
+  end
 end
