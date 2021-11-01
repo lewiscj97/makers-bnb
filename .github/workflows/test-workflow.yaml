@@ -21,7 +21,6 @@ jobs:
   #       run: rubocop
   rspec-test:
     name: RSpec
-    needs: rubocop-test
     runs-on: ubuntu-18.04
     services:
       postgres:
